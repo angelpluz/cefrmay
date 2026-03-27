@@ -1,0 +1,276 @@
+{
+  "id": "stage-2",
+  "stage": "Historical Park",
+  "title": "Si Thep Historical Park",
+  "entrySceneId": "scene-1",
+  "totalScenes": 5,
+  "backgroundImage": "/si-thep-bg.jpg",
+  "character": {
+    "name": "Alex",
+    "role": "Tourist",
+    "avatar": "🎒",
+    "avatarImage": "/alex-avatar.jpg"
+  },
+  "scenes": [
+    {
+      "sceneId": "scene-1",
+      "id": 1,
+      "type": "reading",
+      "difficulty": "easy",
+      "location": "Si Thep Historical Park",
+      "context": "reading / easy",
+      "sceneImage": "/si-thep-pano.jpg",
+      "story": {
+        "title": "You arrive at Si Thep Historical Park.",
+        "text": "You arrive at Si Thep Historical Park."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🏛️",
+        "text": "Wow... this place looks ancient. What is this place?"
+      },
+      "question": "Choose the correct explanation.",
+      "choices": [
+        {
+          "text": "This is an ancient historical site.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex nods in understanding 🏛️"
+          },
+          "xp": 10,
+          "nextSceneId": "scene-2"
+        },
+        {
+          "text": "This is a shopping mall.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks confused 😕"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-2"
+        },
+        {
+          "text": "This is a modern airport terminal.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex pauses 😅 because that clearly does not match the ruins."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-2"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-2",
+      "id": 2,
+      "type": "reading",
+      "difficulty": "easy",
+      "location": "Si Thep Historical Park",
+      "context": "reading / easy",
+      "sceneImage": "/no-entry-sign.jpg",
+      "story": {
+        "title": "You see a sign.",
+        "text": "You see a sign."
+      },
+      "character": "System",
+      "dialogue": {
+        "speaker": "System",
+        "mood": "🚫",
+        "text": "Sign: 'No Entry'"
+      },
+      "question": "What does this mean?",
+      "choices": [
+        {
+          "text": "Do not go inside.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct! 🚫"
+          },
+          "xp": 10,
+          "nextSceneId": "scene-3"
+        },
+        {
+          "text": "You can enter freely.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "That's incorrect ❌"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-3"
+        },
+        {
+          "text": "You must wait here for a bus.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex tilts the head 🤔 because the sign is about access, not transport."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-3"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-3",
+      "id": 3,
+      "type": "reading",
+      "difficulty": "medium",
+      "location": "Si Thep Historical Park",
+      "context": "reading / medium",
+      "sceneImage": "/si-thep-pano.jpg",
+      "story": {
+        "title": "Alex looks around for directions.",
+        "text": "Alex looks around for directions."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🧭",
+        "text": "Where is the entrance?"
+      },
+      "question": "Choose the best answer.",
+      "choices": [
+        {
+          "text": "The entrance is over there.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex walks toward the entrance 🚶"
+          },
+          "xp": 10,
+          "nextSceneId": "scene-4"
+        },
+        {
+          "text": "Go anywhere.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks lost 😵"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-4"
+        },
+        {
+          "text": "Climb over the fence to get in faster.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex steps back 😬 because that would be unsafe and not allowed."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-4"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-4",
+      "id": 4,
+      "type": "reading",
+      "difficulty": "medium",
+      "location": "Si Thep Historical Park",
+      "context": "reading / medium",
+      "sceneImage": "/si-thep-bg.jpg",
+      "story": {
+        "title": "You see an information board.",
+        "text": "You see an information board."
+      },
+      "character": "System",
+      "dialogue": {
+        "speaker": "System",
+        "mood": "📖",
+        "text": "Text: 'Ancient City of Si Thep'"
+      },
+      "question": "What does 'Ancient' mean?",
+      "choices": [
+        {
+          "text": "Very old",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct! 🏛️"
+          },
+          "xp": 10,
+          "nextSceneId": "scene-5"
+        },
+        {
+          "text": "Very new",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Wrong ❌"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-5"
+        },
+        {
+          "text": "Very noisy",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex shakes the head 😅 because that word describes age, not sound."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-5"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-5",
+      "id": 5,
+      "type": "reading",
+      "difficulty": "hard",
+      "location": "Si Thep Historical Park",
+      "context": "reading / hard",
+      "sceneImage": "/si-thep-pano.jpg",
+      "story": {
+        "title": "Alex thanks you again.",
+        "text": "Alex thanks you again."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "😊",
+        "text": "This place is very interesting!"
+      },
+      "question": "Choose the best response.",
+      "choices": [
+        {
+          "text": "Yes, it's a very old city.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex smiles 😊 +10 XP"
+          },
+          "xp": 10,
+          "nextSceneId": null
+        },
+        {
+          "text": "I don't like it.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks disappointed 😞"
+          },
+          "xp": 0,
+          "nextSceneId": null
+        },
+        {
+          "text": "It is exactly the same as a new department store.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex laughs awkwardly 😅 because that comparison does not fit at all."
+          },
+          "xp": 0,
+          "nextSceneId": null
+        }
+      ]
+    }
+  ]
+}

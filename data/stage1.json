@@ -1,0 +1,259 @@
+{
+  "id": "stage-1",
+  "title": "Temple Guide Adventure",
+  "entrySceneId": "scene-1",
+  "backgroundImage": "/temple-arrival.jpg",
+  "character": {
+    "name": "Alex",
+    "role": "Tourist",
+    "avatar": "🧳",
+    "avatarImage": "/alex-avatar.jpg"
+  },
+  "scenes": [
+    {
+      "sceneId": "scene-1",
+      "id": 1,
+      "location": "Golden Temple Court",
+      "context": "Arrival",
+      "sceneImage": "/temple-arrival.jpg",
+      "story": {
+        "title": "Temple Arrival",
+        "text": "You are guiding Alex through the first courtyard of the temple. Visitors are quietly admiring the architecture while signs explain the house rules."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "😊",
+        "text": "This temple looks amazing. Can I take photos here?"
+      },
+      "question": "How should you answer Alex?",
+      "choices": [
+        {
+          "text": "Yes, you can in permitted areas and without disturbing others.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex smiles 😊 and carefully lifts the camera."
+          },
+          "xp": 20,
+          "nextSceneId": "scene-2"
+        },
+        {
+          "text": "No, go away.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks confused 😕 and lowers the camera."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-2"
+        },
+        {
+          "text": "Only if you run to the front quickly.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex hesitates 😬 because that sounds disrespectful."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-2"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-2",
+      "id": 2,
+      "location": "Prayer Hall Entrance",
+      "context": "Etiquette",
+      "sceneImage": "/prayer-hall.jpg",
+      "story": {
+        "title": "At the Prayer Hall",
+        "text": "Alex reaches the entrance of the main hall, where the atmosphere becomes more formal and respectful. Temple etiquette matters more here."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🤔",
+        "text": "Do I need to remove my shoes before entering the hall?"
+      },
+      "question": "Choose the best guidance.",
+      "choices": [
+        {
+          "text": "Yes, please remove them before you step inside.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex nods 🙌 and leaves the shoes neatly outside."
+          },
+          "xp": 25,
+          "nextSceneId": "scene-3"
+        },
+        {
+          "text": "No, shoes are always fine indoors.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks uncertain 😕 because the sign says otherwise."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-3"
+        },
+        {
+          "text": "Only tourists have to do that, not locals.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex frowns 😒 at the unfair advice."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-3"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-3",
+      "id": 3,
+      "location": "Temple Mural Gallery",
+      "context": "Quiet Zone",
+      "sceneImage": "/temple-wall.jpg",
+      "story": {
+        "title": "Inside the Gallery",
+        "text": "The mural gallery is peaceful, and visitors are moving slowly to take in the details. Your role is to help Alex match the tone of the space."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "😮",
+        "text": "This room is beautiful. Can I speak loudly so my friends hear me?"
+      },
+      "question": "Pick the most respectful reply.",
+      "choices": [
+        {
+          "text": "Please keep your voice low because this is a quiet area.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex whispers 🙂 and takes in the artwork peacefully."
+          },
+          "xp": 20,
+          "nextSceneId": "scene-4"
+        },
+        {
+          "text": "Sure, shout as loud as you want.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex winces 😬 when nearby visitors stare back."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-4"
+        },
+        {
+          "text": "Only if you sing instead of speaking.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex laughs awkwardly 😅 but still has no clear answer."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-4"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-4",
+      "id": 4,
+      "location": "Incense Courtyard",
+      "context": "Offering Area",
+      "sceneImage": "/prayer-hall.jpg",
+      "story": {
+        "title": "Offering Time",
+        "text": "The courtyard is busy with people making offerings. Alex wants to join respectfully, but needs your help to understand the expected behavior."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🕯️",
+        "text": "I want to make an offering. What should I do first?"
+      },
+      "question": "What is the best instruction?",
+      "choices": [
+        {
+          "text": "Stand calmly, follow the local queue, and copy the posted instructions.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex smiles 😊 and joins the line respectfully."
+          },
+          "xp": 25,
+          "nextSceneId": "scene-5"
+        },
+        {
+          "text": "Push to the front so you get the best spot.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks embarrassed 😳 by the rude suggestion."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-5"
+        },
+        {
+          "text": "Skip the signs because they are probably not important.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex pauses 😕 and decides that sounds risky."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-5"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-5",
+      "id": 5,
+      "location": "Temple Garden Exit",
+      "context": "Farewell",
+      "sceneImage": "/temple-wall.jpg",
+      "story": {
+        "title": "Journey End",
+        "text": "Alex is ready to leave the temple garden. One final social moment remains, and a polite closing will complete the stage cleanly."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🌤️",
+        "text": "Thank you for guiding me. How do I thank the staff politely?"
+      },
+      "question": "Choose the most natural response.",
+      "choices": [
+        {
+          "text": "Say thank you politely and give a respectful smile.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex beams 😄 and offers a warm, respectful thank you."
+          },
+          "xp": 30,
+          "nextSceneId": null
+        },
+        {
+          "text": "Just leave without saying anything.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks uneasy 😕 because that feels impolite."
+          },
+          "xp": 0,
+          "nextSceneId": null
+        },
+        {
+          "text": "Complain loudly about the heat before leaving.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex grimaces 😒 because that would ruin the moment."
+          },
+          "xp": 0,
+          "nextSceneId": null
+        }
+      ]
+    }
+  ]
+}
