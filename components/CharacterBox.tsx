@@ -53,6 +53,7 @@ export default function CharacterBox({
               fill
               sizes="88px"
               src={avatarImage}
+              unoptimized
             />
           ) : (
             <div className="flex h-full items-center justify-center text-5xl">

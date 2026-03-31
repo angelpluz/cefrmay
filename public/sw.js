@@ -1,10 +1,13 @@
-const CACHE_NAME = "phetchabun-adventure-v1";
+const CACHE_NAME = "phetchabun-adventure-v2";
 const APP_SHELL = [
   "/",
   "/offline.html",
   "/manifest.webmanifest",
   "/app-icon.svg",
   "/alex-avatar.jpg",
+  "/file.svg",
+  "/globe.svg",
+  "/next.svg",
   "/temple-arrival.jpg",
   "/prayer-hall.jpg",
   "/temple-wall.jpg",
@@ -13,6 +16,8 @@ const APP_SHELL = [
   "/no-entry-sign.jpg",
   "/phu-thap-boek-view.jpg",
   "/phu-thap-boek-market.jpg",
+  "/vercel.svg",
+  "/window.svg",
 ];
 
 self.addEventListener("install", (event) => {

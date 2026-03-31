@@ -98,6 +98,7 @@ export default function GameScene({
             priority
             sizes="(max-width: 768px) 100vw, 420px"
             src={stageData.backgroundImage}
+            unoptimized
           />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(103,232,249,0.2),transparent_28%),linear-gradient(180deg,rgba(2,6,23,0.22)_0%,rgba(2,6,23,0.74)_45%,rgba(2,6,23,0.96)_100%)]" />
         </>
@@ -152,6 +153,7 @@ export default function GameScene({
                       fill
                       sizes="(max-width: 768px) 100vw, 420px"
                       src={currentScene.sceneImage}
+                      unoptimized
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/55 via-transparent to-transparent" />
                     <div className="absolute bottom-3 left-3 rounded-full bg-black/40 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
