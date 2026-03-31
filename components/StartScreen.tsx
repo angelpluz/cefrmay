@@ -8,6 +8,9 @@ type StartScreenProps = {
   onContinue: () => void;
   onInstall: () => void;
   onNewGame: () => void;
+  onSwitchPlayer: () => void;
+  playerName: string;
+  playerUid: string;
 };
 
 export default function StartScreen({
@@ -18,6 +21,9 @@ export default function StartScreen({
   onContinue,
   onInstall,
   onNewGame,
+  onSwitchPlayer,
+  playerName,
+  playerUid,
 }: StartScreenProps) {
   return (
     <section className="relative flex h-full flex-col justify-end overflow-hidden px-5 pb-6 pt-8 text-white">
@@ -26,8 +32,27 @@ export default function StartScreen({
       <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-transparent via-slate-950/35 to-slate-950" />
 
       <div className="relative z-10">
-        <div className="mb-5 inline-flex rounded-full border border-white/12 bg-white/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.32em] text-cyan-200 backdrop-blur-md">
-          Phetchabun Adventure
+        <div className="mb-5 flex items-start justify-between gap-3">
+          <div className="inline-flex rounded-full border border-white/12 bg-white/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.32em] text-cyan-200 backdrop-blur-md">
+            Phetchabun Adventure
+          </div>
+          <button
+            type="button"
+            onClick={onSwitchPlayer}
+            className="rounded-full border border-white/12 bg-white/8 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-200 backdrop-blur-md transition hover:-translate-y-0.5"
+          >
+            Switch Player
+          </button>
+        </div>
+
+        <div className="mb-4 rounded-[24px] border border-white/10 bg-white/7 px-4 py-3 backdrop-blur-md">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-slate-300">
+            Signed In
+          </p>
+          <p className="mt-2 text-lg font-bold text-white">{playerName}</p>
+          <p className="text-xs uppercase tracking-[0.22em] text-cyan-200">
+            {playerUid}
+          </p>
         </div>
 
         <h1 className="max-w-xs text-5xl font-black uppercase leading-[0.94] tracking-[-0.05em]">

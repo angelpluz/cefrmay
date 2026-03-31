@@ -14,11 +14,18 @@ import {
   saveGameProgress,
   type GameSaveData,
 } from "@/lib/gameSave";
+import type {
+  GameProgressInput,
+  PlayerProfile,
+  StageResultInput,
+} from "@/lib/research-contract";
 
 type AppScreen = "play" | "result" | "select" | "start";
 
 type GameAppProps = {
   appSeed: string;
+  initialProgress: GameProgressInput | null;
+  player: PlayerProfile;
   stages: GameData[];
 };
 
@@ -33,7 +40,26 @@ type BeforeInstallPromptEvent = Event & {
   userChoice: Promise<{ outcome: "accepted" | "dismissed"; platform: string }>;
 };
 
-export default function GameApp({ appSeed, stages }: GameAppProps) {
+async function postJson(url: string, payload: GameProgressInput | StageResultInput) {
+  const response = await fetch(url, {
+    body: JSON.stringify(payload),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+  });
+
+  if (!response.ok) {
+    throw new Error(`Request failed for ${url}`);
+  }
+}
+
+export default function GameApp({
+  appSeed,
+  initialProgress,
+  player,
+  stages,
+}: GameAppProps) {
   const firstStage = stages[0];
   const [screen, setScreen] = useState<AppScreen>("start");
   const [activeStageId, setActiveStageId] = useState(firstStage.id);
@@ -72,6 +98,15 @@ export default function GameApp({ appSeed, stages }: GameAppProps) {
         setCompletedStageIds(existingSave.completedStageIds);
         setHasSave(true);
       });
+    } else if (initialProgress) {
+      queueMicrotask(() => {
+        setActiveStageId(initialProgress.currentStageId);
+        setCurrentSceneId(initialProgress.currentSceneId);
+        setXp(initialProgress.xp);
+        setUnlockedStageIds(initialProgress.unlockedStageIds);
+        setCompletedStageIds(initialProgress.completedStageIds);
+        setHasSave(true);
+      });
     }
 
     queueMicrotask(() => {
@@ -79,7 +114,7 @@ export default function GameApp({ appSeed, stages }: GameAppProps) {
       setIsIOS(/iPad|iPhone|iPod/.test(window.navigator.userAgent));
       setSaveLoaded(true);
     });
-  }, []);
+  }, [initialProgress]);
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (event: Event) => {
@@ -111,6 +146,9 @@ export default function GameApp({ appSeed, stages }: GameAppProps) {
     };
 
     saveGameProgress(saveData);
+    void postJson("/api/player-progress", saveData).catch(() => {
+      // Local save stays authoritative if the network write fails.
+    });
   }, [
     activeStageId,
     completedStageIds,
@@ -162,11 +200,16 @@ export default function GameApp({ appSeed, stages }: GameAppProps) {
     setXp(payload.xp);
   };
 
-  const handleStageComplete = (payload: { stars: number; totalXp: number }) => {
+  const handleStageComplete = (payload: {
+    stageXp: number;
+    stars: number;
+    totalXp: number;
+  }) => {
     const nextUnlocked = nextStage
       ? Array.from(new Set([...unlockedStageIds, nextStage.id]))
       : unlockedStageIds;
     const nextCompleted = Array.from(new Set([...completedStageIds, activeStage.id]));
+    const stageLabel = activeStage.stage ?? `Stage ${activeStageIndex + 1}`;
 
     setUnlockedStageIds(nextUnlocked);
     setCompletedStageIds(nextCompleted);
@@ -178,6 +221,29 @@ export default function GameApp({ appSeed, stages }: GameAppProps) {
       totalXp: payload.totalXp,
     });
     setScreen("result");
+
+    void postJson("/api/stage-results", {
+      stageId: activeStage.id,
+      stageLabel,
+      stageTitle: activeStage.title,
+      stageXp: payload.stageXp,
+      stars: payload.stars,
+      totalXp: payload.totalXp,
+    }).catch(() => {
+      // Stage result can be retried manually from the player's next completion.
+    });
+  };
+
+  const handleSwitchPlayer = async () => {
+    clearGameSave();
+
+    try {
+      await fetch("/api/player-session", {
+        method: "DELETE",
+      });
+    } finally {
+      window.location.reload();
+    }
   };
 
   const handleReplayStage = () => {
@@ -237,6 +303,9 @@ export default function GameApp({ appSeed, stages }: GameAppProps) {
           onContinue={handleContinueGame}
           onInstall={handleInstall}
           onNewGame={handleNewGame}
+          onSwitchPlayer={handleSwitchPlayer}
+          playerName={player.username}
+          playerUid={player.uid}
         />
       ) : null}
 

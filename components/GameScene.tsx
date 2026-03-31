@@ -15,7 +15,11 @@ type GameSceneProps = {
   initialXp?: number;
   onBack: () => void;
   onProgressChange: (payload: { sceneId: string | null; xp: number }) => void;
-  onStageComplete: (payload: { stars: number; totalXp: number }) => void;
+  onStageComplete: (payload: {
+    stageXp: number;
+    stars: number;
+    totalXp: number;
+  }) => void;
   sessionSeed: string;
   stageData: GameData;
 };
@@ -73,6 +77,7 @@ export default function GameScene({
     const stars = ratio >= 0.95 ? 3 : ratio >= 0.55 ? 2 : 1;
 
     onStageComplete({
+      stageXp: Math.max(stageXp, 0),
       stars,
       totalXp: xp,
     });
