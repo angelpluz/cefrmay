@@ -1,0 +1,10 @@
+ValidationError: The 'X-Forwarded-For' header is set but the Express 'trust proxy' setting is false (default). This could indicate a misconfiguration which would prevent express-rate-limit from accurately identifying users. See https://express-rate-limit.github.io/ERR_ERL_UNEXPECTED_X_FORWARDED_FOR/ for more information.
+    at Object.xForwardedForHeader (C:\databaseauth\server\node_modules\express-rate-limit\dist\index.cjs:371:13)
+    at wrappedValidations.<computed> [as xForwardedForHeader] (C:\databaseauth\server\node_modules\express-rate-limit\dist\index.cjs:685:22)
+    at Object.keyGenerator (C:\databaseauth\server\node_modules\express-rate-limit\dist\index.cjs:788:20)
+    at C:\databaseauth\server\node_modules\express-rate-limit\dist\index.cjs:849:32
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async C:\databaseauth\server\node_modules\express-rate-limit\dist\index.cjs:830:5 {
+  code: 'ERR_ERL_UNEXPECTED_X_FORWARDED_FOR',
+  help: 'https://express-rate-limit.github.io/ERR_ERL_UNEXPECTED_X_FORWARDED_FOR/'
+}

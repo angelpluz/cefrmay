@@ -55,12 +55,13 @@ export async function getCurrentPlayerState() {
 
 export async function getResearchDashboardData(accessToken: string) {
   const dashboard = await getBackendDashboard(accessToken);
+  const allResults = (dashboard.allResults || dashboard.recentResults).map((result) => ({
+    ...result,
+    completedAt: toDate(result.completedAt),
+  }));
 
   return {
-    allResults: dashboard.allResults.map((result) => ({
-      ...result,
-      completedAt: toDate(result.completedAt),
-    })),
+    allResults,
     playerRows: dashboard.playerRows.map((player) => ({
       ...player,
       createdAt: toDate(player.createdAt),
