@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
+import AssetPreloadScreen from "@/components/AssetPreloadScreen";
 import GameScene from "@/components/GameScene";
 import PWARegistrar from "@/components/PWARegistrar";
 import ResultScreen from "@/components/ResultScreen";
@@ -39,6 +40,48 @@ type BeforeInstallPromptEvent = Event & {
   prompt: () => Promise<void>;
   userChoice: Promise<{ outcome: "accepted" | "dismissed"; platform: string }>;
 };
+
+type AssetPreloadState = {
+  failedCount: number;
+  loadedCount: number;
+  ready: boolean;
+  totalCount: number;
+};
+
+const STATIC_PRELOAD_ASSETS = ["/app-icon.svg"];
+
+function collectPreloadAssets(stages: GameData[]) {
+  const assetSet = new Set<string>(STATIC_PRELOAD_ASSETS);
+
+  for (const stage of stages) {
+    if (stage.backgroundImage) {
+      assetSet.add(stage.backgroundImage);
+    }
+
+    if (stage.character.avatarImage) {
+      assetSet.add(stage.character.avatarImage);
+    }
+
+    for (const scene of stage.scenes) {
+      if (scene.sceneImage) {
+        assetSet.add(scene.sceneImage);
+      }
+    }
+  }
+
+  return Array.from(assetSet);
+}
+
+function preloadAsset(source: string) {
+  return new Promise<void>((resolve, reject) => {
+    const image = new Image();
+
+    image.onload = () => resolve();
+    image.onerror = () =>
+      reject(new Error(`Unable to preload asset: ${source}`));
+    image.src = source;
+  });
+}
 
 async function postJson(url: string, payload: GameProgressInput | StageResultInput) {
   const response = await fetch(url, {
@@ -79,6 +122,13 @@ export default function GameApp({
   const [isIOS, setIsIOS] = useState(false);
   const [hasSave, setHasSave] = useState(false);
   const [saveLoaded, setSaveLoaded] = useState(false);
+  const preloadAssets = useMemo(() => collectPreloadAssets(stages), [stages]);
+  const [assetPreloadState, setAssetPreloadState] = useState<AssetPreloadState>({
+    failedCount: 0,
+    loadedCount: 0,
+    ready: false,
+    totalCount: preloadAssets.length,
+  });
 
   const activeStage =
     stages.find((stage) => stage.id === activeStageId) ?? firstStage;
@@ -131,6 +181,57 @@ export default function GameApp({
       );
     };
   }, []);
+
+  useEffect(() => {
+    if (!saveLoaded) {
+      return;
+    }
+
+    let cancelled = false;
+
+    setAssetPreloadState({
+      failedCount: 0,
+      loadedCount: 0,
+      ready: preloadAssets.length === 0,
+      totalCount: preloadAssets.length,
+    });
+
+    if (preloadAssets.length === 0) {
+      return;
+    }
+
+    const runPreload = async () => {
+      let loadedCount = 0;
+      let failedCount = 0;
+
+      await Promise.allSettled(
+        preloadAssets.map(async (source) => {
+          try {
+            await preloadAsset(source);
+          } catch {
+            failedCount += 1;
+          } finally {
+            loadedCount += 1;
+
+            if (!cancelled) {
+              setAssetPreloadState({
+                failedCount,
+                loadedCount,
+                ready: loadedCount === preloadAssets.length,
+                totalCount: preloadAssets.length,
+              });
+            }
+          }
+        }),
+      );
+    };
+
+    void runPreload();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [preloadAssets, saveLoaded]);
 
   useEffect(() => {
     if (!saveLoaded || screen === "start") {
@@ -286,6 +387,19 @@ export default function GameApp({
         <div className="rounded-full border border-white/10 bg-white/6 px-5 py-3 text-sm font-semibold uppercase tracking-[0.28em] text-cyan-200">
           Loading
         </div>
+      </div>
+    );
+  }
+
+  if (!assetPreloadState.ready) {
+    return (
+      <div className="relative mx-auto flex h-[100dvh] w-full max-w-[420px] overflow-hidden rounded-none bg-slate-950 shadow-[0_40px_120px_rgba(15,23,42,0.5)] sm:h-[calc(100dvh-24px)] sm:rounded-[36px] sm:border sm:border-white/10">
+        <PWARegistrar />
+        <AssetPreloadScreen
+          failedCount={assetPreloadState.failedCount}
+          loadedCount={assetPreloadState.loadedCount}
+          totalCount={assetPreloadState.totalCount}
+        />
       </div>
     );
   }
