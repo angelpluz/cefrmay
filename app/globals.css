@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f4ff;
-  --foreground: #182033;
+  --background: #020617;
+  --foreground: #f8fafc;
 }
 
 @theme inline {
@@ -12,28 +12,24 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #f7f4ff;
-    --foreground: #182033;
-  }
-}
-
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
   min-height: 100%;
+  overscroll-behavior: none;
+  scroll-behavior: auto;
 }
 
 body {
-  min-height: 100vh;
-  background: var(--background);
+  min-height: 100dvh;
+  overflow: hidden;
+  touch-action: manipulation;
+  background: radial-gradient(circle at top, rgba(34, 211, 238, 0.12), transparent 24%),
+    linear-gradient(180deg, #020617 0%, #0f172a 42%, #111827 100%);
   color: var(--foreground);
-  background-image:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.92), transparent 34%),
-    linear-gradient(180deg, #f7f0ff 0%, #eef6ff 48%, #fff8ee 100%);
   font-family: var(--font-geist-sans), sans-serif;
 }
 
@@ -44,35 +40,35 @@ button {
 @keyframes xp-burst {
   0% {
     opacity: 0;
-    transform: translate(-50%, 12px) scale(0.72);
+    transform: translate(-50%, 14px) scale(0.7);
   }
 
-  20% {
+  15% {
     opacity: 1;
   }
 
   100% {
     opacity: 0;
-    transform: translate(-50%, -30px) scale(1.08);
+    transform: translate(-50%, -30px) scale(1.04);
   }
 }
 
 @keyframes feedback-pop {
   0% {
     opacity: 0;
-    transform: translateY(10px) scale(0.96);
+    transform: scale(0.92);
   }
 
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: scale(1);
   }
 }
 
 @keyframes scene-fade {
   0% {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(10px);
   }
 
   100% {
@@ -90,5 +86,5 @@ button {
 }
 
 .scene-fade {
-  animation: scene-fade 360ms ease-out;
+  animation: scene-fade 280ms ease-out;
 }

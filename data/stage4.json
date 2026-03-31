@@ -1,0 +1,276 @@
+{
+  "id": "stage-4",
+  "stage": "Walking Street",
+  "title": "Lom Sak Walking Street",
+  "entrySceneId": "scene-1",
+  "totalScenes": 5,
+  "backgroundImage": "/phu-thap-boek-market.jpg",
+  "character": {
+    "name": "Alex",
+    "role": "Tourist",
+    "avatar": "🎒",
+    "avatarImage": "/alex-avatar.jpg"
+  },
+  "scenes": [
+    {
+      "sceneId": "scene-1",
+      "id": 1,
+      "type": "writing",
+      "difficulty": "easy",
+      "location": "Lom Sak Walking Street",
+      "context": "writing / easy",
+      "sceneImage": "/phu-thap-boek-market.jpg",
+      "story": {
+        "title": "You arrive at the walking street full of food.",
+        "text": "You arrive at the walking street full of food."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🍢",
+        "text": "Wow! Everything smells so good!"
+      },
+      "question": "Choose the correct sentence.",
+      "choices": [
+        {
+          "text": "I like street food.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good sentence 👍"
+          },
+          "xp": 10,
+          "nextSceneId": "scene-2"
+        },
+        {
+          "text": "Like I food street.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Wrong order ❌"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-2"
+        },
+        {
+          "text": "Food like I street.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Not correct 😅"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-2"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-2",
+      "id": 2,
+      "type": "writing",
+      "difficulty": "easy",
+      "location": "Lom Sak Walking Street",
+      "context": "writing / easy",
+      "sceneImage": "/phu-thap-boek-market.jpg",
+      "story": {
+        "title": "Alex tries spicy food.",
+        "text": "Alex tries spicy food."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🌶️",
+        "text": "Oh! This is spicy!"
+      },
+      "question": "Choose the best sentence.",
+      "choices": [
+        {
+          "text": "This food is very spicy.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct! 🌶️"
+          },
+          "xp": 10,
+          "nextSceneId": "scene-3"
+        },
+        {
+          "text": "Food this spicy very is.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Wrong structure ❌"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-3"
+        },
+        {
+          "text": "Spicy is food this very.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Incorrect 😅"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-3"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-3",
+      "id": 3,
+      "type": "writing",
+      "difficulty": "medium",
+      "location": "Lom Sak Walking Street",
+      "context": "writing / medium",
+      "sceneImage": "/phu-thap-boek-market.jpg",
+      "story": {
+        "title": "Alex enjoys dessert.",
+        "text": "Alex enjoys dessert."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🍰",
+        "text": "This is sweet and delicious!"
+      },
+      "question": "Choose the correct sentence.",
+      "choices": [
+        {
+          "text": "This dessert is sweet and delicious.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Nice description 🍰"
+          },
+          "xp": 10,
+          "nextSceneId": "scene-4"
+        },
+        {
+          "text": "Sweet dessert this is delicious.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Wrong order ❌"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-4"
+        },
+        {
+          "text": "Delicious is this sweet dessert.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Incorrect 😅"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-4"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-4",
+      "id": 4,
+      "type": "writing",
+      "difficulty": "medium",
+      "location": "Lom Sak Walking Street",
+      "context": "writing / medium",
+      "sceneImage": "/phu-thap-boek-view.jpg",
+      "story": {
+        "title": "Alex asks for your opinion.",
+        "text": "Alex asks for your opinion."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🤔",
+        "text": "Do you like this food?"
+      },
+      "question": "Choose the best answer.",
+      "choices": [
+        {
+          "text": "Yes, I like it very much.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Great answer 👍"
+          },
+          "xp": 10,
+          "nextSceneId": "scene-5"
+        },
+        {
+          "text": "Yes like very I it.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Wrong structure ❌"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-5"
+        },
+        {
+          "text": "I yes very like it.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Incorrect 😅"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-5"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-5",
+      "id": 5,
+      "type": "writing",
+      "difficulty": "hard",
+      "location": "Lom Sak Walking Street",
+      "context": "writing / hard",
+      "sceneImage": "/phu-thap-boek-view.jpg",
+      "story": {
+        "title": "The night is ending and Alex reflects.",
+        "text": "The night is ending and Alex reflects."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🌙",
+        "text": "This was an amazing experience!"
+      },
+      "question": "Choose the best reply.",
+      "choices": [
+        {
+          "text": "I'm glad you enjoyed it.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Perfect ending 😊 +10 XP"
+          },
+          "xp": 10,
+          "nextSceneId": null
+        },
+        {
+          "text": "I don't care.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "That's rude 😅"
+          },
+          "xp": 0,
+          "nextSceneId": null
+        },
+        {
+          "text": "Enjoy glad I you.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Wrong sentence ❌"
+          },
+          "xp": 0,
+          "nextSceneId": null
+        }
+      ]
+    }
+  ]
+}

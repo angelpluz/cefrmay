@@ -1,0 +1,276 @@
+{
+  "id": "stage-3",
+  "stage": "Mountain Market",
+  "title": "Phu Thap Boek Market",
+  "entrySceneId": "scene-1",
+  "totalScenes": 5,
+  "backgroundImage": "/phu-thap-boek-view.jpg",
+  "character": {
+    "name": "Alex",
+    "role": "Tourist",
+    "avatar": "🎒",
+    "avatarImage": "/alex-avatar.jpg"
+  },
+  "scenes": [
+    {
+      "sceneId": "scene-1",
+      "id": 1,
+      "type": "speaking",
+      "difficulty": "easy",
+      "location": "Phu Thap Boek Market",
+      "context": "speaking / easy",
+      "sceneImage": "/phu-thap-boek-view.jpg",
+      "story": {
+        "title": "You arrive at a small market on the mountain.",
+        "text": "You arrive at a small market on the mountain."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🥬",
+        "text": "Wow! There are so many vegetables here. I want to buy something."
+      },
+      "question": "What should you say to start?",
+      "choices": [
+        {
+          "text": "How much is this?",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good start! 💰"
+          },
+          "xp": 10,
+          "nextSceneId": "scene-2"
+        },
+        {
+          "text": "Go away.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "That's rude 😅"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-2"
+        },
+        {
+          "text": "I sleep here.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "That doesn't make sense 🤔"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-2"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-2",
+      "id": 2,
+      "type": "vocab",
+      "difficulty": "easy",
+      "location": "Phu Thap Boek Market",
+      "context": "vocab / easy",
+      "sceneImage": "/phu-thap-boek-market.jpg",
+      "story": {
+        "title": "You look at a price tag.",
+        "text": "You look at a price tag."
+      },
+      "character": "System",
+      "dialogue": {
+        "speaker": "System",
+        "mood": "🏷️",
+        "text": "Price: 100 baht"
+      },
+      "question": "If something is cheap, what does it mean?",
+      "choices": [
+        {
+          "text": "Low price",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct! 👍"
+          },
+          "xp": 10,
+          "nextSceneId": "scene-3"
+        },
+        {
+          "text": "Very big",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Not related ❌"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-3"
+        },
+        {
+          "text": "Very far",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Wrong meaning ❌"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-3"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-3",
+      "id": 3,
+      "type": "speaking",
+      "difficulty": "medium",
+      "location": "Phu Thap Boek Market",
+      "context": "speaking / medium",
+      "sceneImage": "/phu-thap-boek-market.jpg",
+      "story": {
+        "title": "Alex wants a better price.",
+        "text": "Alex wants a better price."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "💸",
+        "text": "This is a bit expensive..."
+      },
+      "question": "What should you say?",
+      "choices": [
+        {
+          "text": "Can you give me a discount?",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Nice bargaining 😎"
+          },
+          "xp": 10,
+          "nextSceneId": "scene-4"
+        },
+        {
+          "text": "I take it for free.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "That's not polite 😅"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-4"
+        },
+        {
+          "text": "I don't want money.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "That doesn't fit 🤔"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-4"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-4",
+      "id": 4,
+      "type": "speaking",
+      "difficulty": "medium",
+      "location": "Phu Thap Boek Market",
+      "context": "speaking / medium",
+      "sceneImage": "/phu-thap-boek-market.jpg",
+      "story": {
+        "title": "The seller offers a new price.",
+        "text": "The seller offers a new price."
+      },
+      "character": "Seller",
+      "dialogue": {
+        "speaker": "Seller",
+        "mood": "🤝",
+        "text": "Okay, 80 baht."
+      },
+      "question": "What is the best response?",
+      "choices": [
+        {
+          "text": "Okay, I'll take it.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Deal! 🤝"
+          },
+          "xp": 10,
+          "nextSceneId": "scene-5"
+        },
+        {
+          "text": "No, I run away.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "That's strange 😅"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-5"
+        },
+        {
+          "text": "I eat money.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "That doesn't make sense 🤔"
+          },
+          "xp": 0,
+          "nextSceneId": "scene-5"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-5",
+      "id": 5,
+      "type": "mixed",
+      "difficulty": "hard",
+      "location": "Phu Thap Boek Market",
+      "context": "mixed / hard",
+      "sceneImage": "/phu-thap-boek-view.jpg",
+      "story": {
+        "title": "Alex is happy with the purchase.",
+        "text": "Alex is happy with the purchase."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "😊",
+        "text": "That was fun! I love this market."
+      },
+      "question": "Choose the best reply.",
+      "choices": [
+        {
+          "text": "Yes, it's a great place to shop.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex smiles 😊 +10 XP"
+          },
+          "xp": 10,
+          "nextSceneId": null
+        },
+        {
+          "text": "I hate this place.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks confused 😕"
+          },
+          "xp": 0,
+          "nextSceneId": null
+        },
+        {
+          "text": "I don't know anything.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "That doesn't match ❌"
+          },
+          "xp": 0,
+          "nextSceneId": null
+        }
+      ]
+    }
+  ]
+}

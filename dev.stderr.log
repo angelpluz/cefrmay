@@ -1,6 +1,13 @@
-[browser] Image with src "/temple-arrival.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[browser] Image with src "/temple-arrival.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[browser] Image with src "/temple-arrival.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[browser] The final argument passed to useEffect changed size between renders. The order and size of this array must remain constant.
+
+Previous: [stage-1, , scene-1, true, stage-1, 0]
+Incoming: [stage-1, , scene-1, true, start, stage-1, 0] 
+    at GameApp (components/GameApp.tsx:97:5)
+    at Set.forEach (<anonymous>)
+   95 |         handleBeforeInstallPrompt,
+   96 |       );
+>  97 |     };
+      |     ^
+   98 |   }, []);
+   99 |
+  100 |   useEffect(() => { (components/GameApp.tsx:97:5)

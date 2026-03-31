@@ -19,12 +19,20 @@ type FeedbackState = {
   xpAwarded: number;
 };
 
-const FEEDBACK_DELAY_MS = 1350;
+const FEEDBACK_DELAY_MS = 1200;
 const XP_BURST_DELAY_MS = 900;
 
-export function useGameSession(stageData: GameData, initialXp = 0) {
+export function useGameSession({
+  initialSceneId,
+  initialXp = 0,
+  stageData,
+}: {
+  initialSceneId?: string | null;
+  initialXp?: number;
+  stageData: GameData;
+}) {
   const [currentSceneId, setCurrentSceneId] = useState<string | null>(
-    getStageEntrySceneId(stageData),
+    initialSceneId ?? getStageEntrySceneId(stageData),
   );
   const [xp, setXp] = useState(initialXp);
   const [xpBurst, setXpBurst] = useState<number | null>(null);
@@ -32,6 +40,7 @@ export function useGameSession(stageData: GameData, initialXp = 0) {
   const nextSceneTimerRef = useRef<NodeJS.Timeout | null>(null);
   const xpTimerRef = useRef<NodeJS.Timeout | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
+  const audioRefs = useRef<Record<string, HTMLAudioElement | null>>({});
 
   const currentScene = getSceneById(stageData, currentSceneId);
   const isComplete = currentSceneId === null;
@@ -104,7 +113,6 @@ export function useGameSession(stageData: GameData, initialXp = 0) {
 
     oscillator.type = type;
     oscillator.frequency.setValueAtTime(frequency, now);
-
     gainNode.gain.setValueAtTime(0.0001, now);
     gainNode.gain.linearRampToValueAtTime(gain, now + 0.01);
     gainNode.gain.exponentialRampToValueAtTime(0.0001, now + duration);
@@ -115,29 +123,68 @@ export function useGameSession(stageData: GameData, initialXp = 0) {
     oscillator.stop(now + duration + 0.02);
   };
 
+  const playAudioFile = async (name: "click" | "correct" | "wrong") => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    const sourcePath = `/sounds/${name}.mp3`;
+    const cachedAudio = audioRefs.current[name] ?? new Audio(sourcePath);
+    audioRefs.current[name] = cachedAudio;
+
+    try {
+      cachedAudio.currentTime = 0;
+      await cachedAudio.play();
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
   const playClickSound = () => {
-    playTone({
-      duration: 0.08,
-      frequency: 420,
-      gain: 0.03,
-      type: "square",
+    void playAudioFile("click").then((played) => {
+      if (!played) {
+        playTone({
+          duration: 0.08,
+          frequency: 420,
+          gain: 0.03,
+          type: "square",
+        });
+      }
     });
   };
 
   const playCorrectSound = () => {
-    playTone({
-      delay: 0.02,
-      duration: 0.12,
-      frequency: 660,
-      gain: 0.04,
-      type: "triangle",
+    void playAudioFile("correct").then((played) => {
+      if (!played) {
+        playTone({
+          delay: 0.02,
+          duration: 0.12,
+          frequency: 660,
+          gain: 0.04,
+          type: "triangle",
+        });
+        playTone({
+          delay: 0.14,
+          duration: 0.18,
+          frequency: 880,
+          gain: 0.04,
+          type: "triangle",
+        });
+      }
     });
-    playTone({
-      delay: 0.14,
-      duration: 0.18,
-      frequency: 880,
-      gain: 0.04,
-      type: "triangle",
+  };
+
+  const playWrongSound = () => {
+    void playAudioFile("wrong").then((played) => {
+      if (!played) {
+        playTone({
+          duration: 0.18,
+          frequency: 220,
+          gain: 0.045,
+          type: "sawtooth",
+        });
+      }
     });
   };
 
@@ -152,6 +199,8 @@ export function useGameSession(stageData: GameData, initialXp = 0) {
 
     if (result.isCorrect) {
       playCorrectSound();
+    } else {
+      playWrongSound();
     }
 
     if (result.xpAwarded > 0) {
@@ -197,6 +246,7 @@ export function useGameSession(stageData: GameData, initialXp = 0) {
   return {
     completion,
     currentScene,
+    currentSceneId,
     feedback,
     handleChoiceSelect,
     handleRestart,

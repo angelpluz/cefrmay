@@ -130,6 +130,16 @@ export function getStageCompletionSummary(stageData: GameData, xp: number) {
   };
 }
 
+export function getStageMaxXp(stageData: GameData) {
+  return stageData.scenes.reduce((totalXp, scene) => {
+    const bestChoiceXp = scene.choices.reduce((choiceXp, choice) => {
+      return choice.correct ? Math.max(choiceXp, choice.xp) : choiceXp;
+    }, 0);
+
+    return totalXp + bestChoiceXp;
+  }, 0);
+}
+
 export function getStageEntrySceneId(stageData: GameData) {
   return stageData.entrySceneId;
 }
