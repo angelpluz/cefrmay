@@ -131,6 +131,19 @@ export async function createBackendStageResult(input: StageResultInput & {
 
 export async function getBackendDashboard(accessToken: string) {
   return backendApiFetch<{
+    allResults: Array<{
+      completedAt: string;
+      playerId: number;
+      playerPhone: string;
+      playerUid: string;
+      playerUsername: string;
+      stageId: string;
+      stageLabel: string;
+      stageTitle: string;
+      stageXp: number;
+      stars: number;
+      totalXp: number;
+    }>;
     playerRows: Array<{
       createdAt: string;
       id: number;
@@ -164,11 +177,17 @@ export async function getBackendDashboard(accessToken: string) {
     }>;
     stageBreakdown: Array<{
       attempts: number;
+      averageTotalXp: number;
       averageStageXp: number;
       averageStars: number;
+      highestStageXp: number;
+      lowestStageXp: number;
+      oneStarCount: number;
       stageId: string;
       stageLabel: string;
       stageTitle: string;
+      threeStarCount: number;
+      twoStarCount: number;
     }>;
     summary: {
       averageStars: number;

@@ -57,6 +57,10 @@ export async function getResearchDashboardData(accessToken: string) {
   const dashboard = await getBackendDashboard(accessToken);
 
   return {
+    allResults: dashboard.allResults.map((result) => ({
+      ...result,
+      completedAt: toDate(result.completedAt),
+    })),
     playerRows: dashboard.playerRows.map((player) => ({
       ...player,
       createdAt: toDate(player.createdAt),
