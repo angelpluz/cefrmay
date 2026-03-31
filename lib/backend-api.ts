@@ -6,7 +6,12 @@ import type {
 } from "@/lib/research-contract";
 
 function getBackendBaseUrl() {
-  return process.env.BACKEND_API_BASE_URL || "http://127.0.0.1:4272/api/v1";
+  const fallbackBaseUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://api.alprasoft-corp.com/api/v1"
+      : "http://127.0.0.1:4272/api/v1";
+
+  return (process.env.BACKEND_API_BASE_URL || fallbackBaseUrl).replace(/\/+$/, "");
 }
 
 function getBackendApiKey() {

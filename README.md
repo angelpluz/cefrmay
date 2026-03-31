@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Local Development
 
-## Getting Started
-
-First, run the development server:
+Start the backend API first:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd C:\databaseauth\server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then start the Next.js frontend:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd C:\cerfmay\cefrmay
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open `http://localhost:3000`.
 
-## Learn More
+Local development uses `http://127.0.0.1:4272/api/v1` by default unless `BACKEND_API_BASE_URL` is set.
 
-To learn more about Next.js, take a look at the following resources:
+## Vercel Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This frontend should not connect to MySQL directly. It connects to the backend API, and the backend API connects to SQL.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Set these environment variables in Vercel:
 
-## Deploy on Vercel
+```env
+BACKEND_API_BASE_URL=https://api.alprasoft-corp.com/api/v1
+BACKEND_API_KEY=your-backend-api-key
+APP_SESSION_SECRET=your-long-random-session-secret
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=your-backend-admin-password
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Production builds fall back to `https://api.alprasoft-corp.com/api/v1` if `BACKEND_API_BASE_URL` is not set, but production should still set it explicitly in Vercel.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+
+- Player login, progress sync, stage results, and `/admin` all use the backend API.
+- The backend API handles SQL access, UID generation, admin authentication, and dashboard aggregation.
