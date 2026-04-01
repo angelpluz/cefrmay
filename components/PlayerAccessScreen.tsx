@@ -52,7 +52,7 @@ export default function PlayerAccessScreen() {
 
       <div className="relative z-10 w-full max-w-md rounded-[36px] border border-white/12 bg-slate-950/76 p-6 shadow-[0_36px_90px_rgba(15,23,42,0.42)] backdrop-blur-xl">
         <div className="inline-flex rounded-full border border-amber-300/20 bg-amber-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-amber-200">
-          Research Login
+          Player Access
         </div>
 
         <h1 className="mt-5 text-4xl font-black tracking-[-0.05em]">
