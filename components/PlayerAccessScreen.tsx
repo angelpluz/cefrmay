@@ -59,9 +59,9 @@ export default function PlayerAccessScreen() {
           Register Before Play
         </h1>
         <p className="mt-3 text-sm leading-7 text-slate-300">
-          Enter your player name and phone number before starting the
+          Enter your player name and Student_ID before starting the
           adventure. The system will generate a UID automatically and reuse the
-          same research record when the same phone number returns.
+          same research record when the same Student_ID returns.
         </p>
 
         <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
@@ -86,12 +86,12 @@ export default function PlayerAccessScreen() {
           </label>
 
           <label className="block">
-            <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200">
-              Phone
+            <span className="mb-2 block text-xs font-semibold tracking-[0.24em] text-cyan-200">
+              Student_ID
             </span>
             <input
               required
-              autoComplete="tel"
+              autoComplete="off"
               className="w-full rounded-[20px] border border-white/12 bg-white/8 px-4 py-3 text-base text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/60"
               maxLength={24}
               value={formState.phone}
@@ -101,7 +101,7 @@ export default function PlayerAccessScreen() {
                   phone: event.target.value,
                 }))
               }
-              placeholder="081-234-5678"
+              placeholder="Student_ID"
             />
           </label>
 
