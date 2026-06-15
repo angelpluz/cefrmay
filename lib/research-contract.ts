@@ -13,7 +13,20 @@ export type GameProgressInput = {
   xp: number;
 };
 
+export type StageAnswerRecordInput = {
+  answeredAt: string;
+  correctAnswer: string;
+  isCorrect: boolean;
+  question: string;
+  sceneId: string;
+  selectedAnswer: string;
+  xpAwarded: number;
+};
+
 export type StageResultInput = {
+  answerRecords: StageAnswerRecordInput[];
+  correctCount: number;
+  incorrectCount: number;
   stageId: string;
   stageLabel: string;
   stageTitle: string;

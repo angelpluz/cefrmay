@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import CharacterBox from "@/components/CharacterBox";
 import ChoiceBox from "@/components/ChoiceBox";
 import FeedbackOverlay from "@/components/FeedbackOverlay";
 import GameHUD from "@/components/GameHUD";
 import { getStageMaxXp, shuffleChoices, type GameData } from "@/lib/gameEngine";
+import type { StageAnswerRecordInput } from "@/lib/research-contract";
 import { useGameSession } from "@/lib/useGameSession";
 
 type GameSceneProps = {
@@ -16,6 +17,9 @@ type GameSceneProps = {
   onBack: () => void;
   onProgressChange: (payload: { sceneId: string | null; xp: number }) => void;
   onStageComplete: (payload: {
+    answerRecords: StageAnswerRecordInput[];
+    correctCount: number;
+    incorrectCount: number;
     stageXp: number;
     stars: number;
     totalXp: number;
@@ -33,7 +37,12 @@ export default function GameScene({
   sessionSeed,
   stageData,
 }: GameSceneProps) {
+  const stageRunKey = `${sessionSeed}:${stageData.id}`;
+  const completionSubmittedRef = useRef<string | null>(null);
+  const [stageStartXp] = useState(initialXp);
+
   const {
+    answerRecords,
     currentScene,
     currentSceneId,
     feedback,
@@ -71,17 +80,36 @@ export default function GameScene({
       return;
     }
 
-    const stageXp = xp - initialXp;
+    if (completionSubmittedRef.current === stageRunKey) {
+      return;
+    }
+
+    completionSubmittedRef.current = stageRunKey;
+
+    const correctCount = answerRecords.filter((record) => record.isCorrect).length;
+    const incorrectCount = answerRecords.length - correctCount;
+    const stageXp = xp - stageStartXp;
     const maxXp = getStageMaxXp(stageData);
     const ratio = maxXp === 0 ? 0 : stageXp / maxXp;
     const stars = ratio >= 0.95 ? 3 : ratio >= 0.55 ? 2 : 1;
 
     onStageComplete({
+      answerRecords,
+      correctCount,
+      incorrectCount,
       stageXp: Math.max(stageXp, 0),
       stars,
       totalXp: xp,
     });
-  }, [initialXp, isComplete, onStageComplete, stageData, xp]);
+  }, [
+    answerRecords,
+    isComplete,
+    onStageComplete,
+    stageData,
+    stageRunKey,
+    stageStartXp,
+    xp,
+  ]);
 
   if (!currentScene) {
     return null;

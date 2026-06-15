@@ -2,6 +2,7 @@ import "server-only";
 
 import type {
   GameProgressInput,
+  StageAnswerRecordInput,
   StageResultInput,
 } from "@/lib/research-contract";
 
@@ -132,7 +133,10 @@ export async function createBackendStageResult(input: StageResultInput & {
 export async function getBackendDashboard(accessToken: string) {
   return backendApiFetch<{
     allResults: Array<{
+      answerRecords: StageAnswerRecordInput[];
       completedAt: string;
+      correctCount: number;
+      incorrectCount: number;
       playerId: number;
       playerPhone: string;
       playerUid: string;
@@ -151,7 +155,10 @@ export async function getBackendDashboard(accessToken: string) {
       phone: string;
       progress: (GameProgressInput & { updatedAt: string }) | null;
       recentResults: Array<{
+        answerRecords: StageAnswerRecordInput[];
         completedAt: string;
+        correctCount: number;
+        incorrectCount: number;
         stageId: string;
         stageLabel: string;
         stageTitle: string;
@@ -164,7 +171,10 @@ export async function getBackendDashboard(accessToken: string) {
       username: string;
     }>;
     recentResults: Array<{
+      answerRecords: StageAnswerRecordInput[];
       completedAt: string;
+      correctCount: number;
+      incorrectCount: number;
       playerPhone: string;
       playerUid: string;
       playerUsername: string;
@@ -177,6 +187,8 @@ export async function getBackendDashboard(accessToken: string) {
     }>;
     stageBreakdown: Array<{
       attempts: number;
+      averageCorrectCount: number;
+      averageIncorrectCount: number;
       averageTotalXp: number;
       averageStageXp: number;
       averageStars: number;

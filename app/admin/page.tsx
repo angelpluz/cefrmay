@@ -202,6 +202,14 @@ export default async function AdminPage(props: {
     ? filteredResults.reduce((sum, result) => sum + result.stars, 0) /
       filteredAttempts
     : 0;
+  const filteredAverageCorrect = filteredAttempts
+    ? filteredResults.reduce((sum, result) => sum + result.correctCount, 0) /
+      filteredAttempts
+    : 0;
+  const filteredAverageIncorrect = filteredAttempts
+    ? filteredResults.reduce((sum, result) => sum + result.incorrectCount, 0) /
+      filteredAttempts
+    : 0;
   const filteredAverageStageXp = filteredAttempts
     ? filteredResults.reduce((sum, result) => sum + result.stageXp, 0) /
       filteredAttempts
@@ -246,7 +254,7 @@ export default async function AdminPage(props: {
               </h1>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300">
                 Review participant identity, filter stage performance, and inspect
-                score patterns with a clearer visual dashboard.
+                score and answer patterns with a clearer visual dashboard.
               </p>
             </div>
 
@@ -268,7 +276,7 @@ export default async function AdminPage(props: {
               <input
                 name="q"
                 defaultValue={getQueryValue(searchParams.q)}
-                placeholder="Username, phone, UID"
+                placeholder="Nickname, participant code, UID"
                 className="w-full rounded-[18px] border border-white/12 bg-white/8 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500"
               />
             </label>
@@ -345,6 +353,18 @@ export default async function AdminPage(props: {
             value={formatDecimal(filteredAverageStars, 2)}
           />
           <DashboardMetricCard
+            label="Avg Correct"
+            note="Average correct answers per filtered stage completion."
+            tone="text-emerald-200"
+            value={formatDecimal(filteredAverageCorrect, 1)}
+          />
+          <DashboardMetricCard
+            label="Avg Wrong"
+            note="Average wrong answers per filtered stage completion."
+            tone="text-rose-200"
+            value={formatDecimal(filteredAverageIncorrect, 1)}
+          />
+          <DashboardMetricCard
             label="Avg Stage XP"
             note="Average XP earned per filtered stage completion."
             tone="text-rose-200"
@@ -377,7 +397,7 @@ export default async function AdminPage(props: {
               <DashboardBarChart
                 emptyMessage="No attempts match the current filters."
                 items={filteredStageBreakdown.map((stage) => ({
-                  caption: `${formatDecimal(stage.averageStars, 2)} avg stars`,
+                  caption: `${formatDecimal(stage.averageCorrectCount, 1)} correct / ${formatDecimal(stage.averageIncorrectCount, 1)} wrong`,
                   label: `${stage.stageLabel} / ${stage.stageTitle}`,
                   toneClassName:
                     "bg-gradient-to-r from-cyan-300 via-sky-400 to-emerald-300",
@@ -435,7 +455,7 @@ export default async function AdminPage(props: {
                       </div>
                     </div>
 
-                    <div className="mt-4 grid gap-3 md:grid-cols-3">
+                    <div className="mt-4 grid gap-3 md:grid-cols-5">
                       <div className="rounded-[18px] bg-slate-950/55 px-4 py-3">
                         <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400">
                           Avg Stage XP
@@ -458,6 +478,22 @@ export default async function AdminPage(props: {
                         </p>
                         <p className="mt-1 text-xl font-bold text-cyan-300">
                           {formatDecimal(stage.averageTotalXp, 1)}
+                        </p>
+                      </div>
+                      <div className="rounded-[18px] bg-slate-950/55 px-4 py-3">
+                        <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400">
+                          Avg Correct
+                        </p>
+                        <p className="mt-1 text-xl font-bold text-emerald-300">
+                          {formatDecimal(stage.averageCorrectCount, 1)}
+                        </p>
+                      </div>
+                      <div className="rounded-[18px] bg-slate-950/55 px-4 py-3">
+                        <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400">
+                          Avg Wrong
+                        </p>
+                        <p className="mt-1 text-xl font-bold text-rose-300">
+                          {formatDecimal(stage.averageIncorrectCount, 1)}
                         </p>
                       </div>
                     </div>
@@ -527,7 +563,7 @@ export default async function AdminPage(props: {
               <thead className="text-xs uppercase tracking-[0.22em] text-slate-400">
                 <tr>
                   <th className="pb-3 pr-4">Player</th>
-                  <th className="pb-3 pr-4">Phone</th>
+                  <th className="pb-3 pr-4">Participant Code</th>
                   <th className="pb-3 pr-4">Current Stage</th>
                   <th className="pb-3 pr-4">XP</th>
                   <th className="pb-3 pr-4">Attempts</th>
@@ -583,43 +619,116 @@ export default async function AdminPage(props: {
                 <tr>
                   <th className="pb-3 pr-4">When</th>
                   <th className="pb-3 pr-4">Player</th>
-                  <th className="pb-3 pr-4">Phone</th>
+                  <th className="pb-3 pr-4">Participant Code</th>
                   <th className="pb-3 pr-4">Stage</th>
+                  <th className="pb-3 pr-4">Correct</th>
+                  <th className="pb-3 pr-4">Wrong</th>
                   <th className="pb-3 pr-4">Stars</th>
                   <th className="pb-3 pr-4">Stage XP</th>
-                  <th className="pb-3">Total XP</th>
+                  <th className="pb-3 pr-4">Total XP</th>
+                  <th className="pb-3">Answer Records</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredResults.length > 0 ? (
-                  filteredResults.slice(0, 120).map((result, index) => (
-                    <tr
-                      key={`${result.playerUid}-${result.stageId}-${index}`}
-                      className="border-t border-white/6"
-                    >
-                      <td className="py-4 pr-4 text-slate-300">
-                        {formatDateTime(result.completedAt)}
-                      </td>
-                      <td className="py-4 pr-4">
-                        <p className="font-bold text-white">{result.playerUsername}</p>
-                        <p className="text-xs uppercase tracking-[0.18em] text-cyan-200">
-                          {result.playerUid}
-                        </p>
-                      </td>
-                      <td className="py-4 pr-4 text-slate-300">{result.playerPhone}</td>
-                      <td className="py-4 pr-4 text-slate-300">
-                        {result.stageLabel} / {result.stageTitle}
-                      </td>
-                      <td className="py-4 pr-4 font-bold text-amber-300">{result.stars}</td>
-                      <td className="py-4 pr-4 font-bold text-emerald-300">
-                        {result.stageXp}
-                      </td>
-                      <td className="py-4 font-bold text-white">{result.totalXp}</td>
-                    </tr>
-                  ))
+                  filteredResults.slice(0, 120).map((result, index) => {
+                    const answerRecords = result.answerRecords ?? [];
+
+                    return (
+                      <tr
+                        key={`${result.playerUid}-${result.stageId}-${index}`}
+                        className="border-t border-white/6 align-top"
+                      >
+                        <td className="py-4 pr-4 text-slate-300">
+                          {formatDateTime(result.completedAt)}
+                        </td>
+                        <td className="py-4 pr-4">
+                          <p className="font-bold text-white">{result.playerUsername}</p>
+                          <p className="text-xs uppercase tracking-[0.18em] text-cyan-200">
+                            {result.playerUid}
+                          </p>
+                        </td>
+                        <td className="py-4 pr-4 text-slate-300">{result.playerPhone}</td>
+                        <td className="py-4 pr-4 text-slate-300">
+                          {result.stageLabel} / {result.stageTitle}
+                        </td>
+                        <td className="py-4 pr-4 font-bold text-emerald-300">
+                          {result.correctCount}
+                        </td>
+                        <td className="py-4 pr-4 font-bold text-rose-300">
+                          {result.incorrectCount}
+                        </td>
+                        <td className="py-4 pr-4 font-bold text-amber-300">
+                          {result.stars}
+                        </td>
+                        <td className="py-4 pr-4 font-bold text-emerald-300">
+                          {result.stageXp}
+                        </td>
+                        <td className="py-4 pr-4 font-bold text-white">
+                          {result.totalXp}
+                        </td>
+                        <td className="py-4">
+                          <details className="min-w-80">
+                            <summary className="cursor-pointer text-sm font-bold text-cyan-200">
+                              {answerRecords.length} records
+                            </summary>
+                            <div className="mt-3 max-w-xl space-y-3">
+                              {answerRecords.length > 0 ? (
+                                answerRecords.map((record, recordIndex) => (
+                                  <div
+                                    key={`${record.sceneId}-${recordIndex}`}
+                                    className="rounded-[16px] bg-white/6 p-3 text-xs leading-5 text-slate-300"
+                                  >
+                                    <div className="flex flex-wrap items-center gap-2">
+                                      <span
+                                        className={
+                                          record.isCorrect
+                                            ? "font-bold text-emerald-300"
+                                            : "font-bold text-rose-300"
+                                        }
+                                      >
+                                        {record.isCorrect ? "Correct" : "Wrong"}
+                                      </span>
+                                      <span className="font-bold text-amber-200">
+                                        +{record.xpAwarded} XP
+                                      </span>
+                                      <span className="text-slate-500">
+                                        {record.sceneId}
+                                      </span>
+                                    </div>
+                                    <p className="mt-2 text-slate-200">
+                                      {record.question}
+                                    </p>
+                                    <p className="mt-2">
+                                      Selected:{" "}
+                                      <span className="text-white">
+                                        {record.selectedAnswer}
+                                      </span>
+                                    </p>
+                                    {!record.isCorrect ? (
+                                      <p>
+                                        Correct:{" "}
+                                        <span className="text-white">
+                                          {record.correctAnswer}
+                                        </span>
+                                      </p>
+                                    ) : null}
+                                  </div>
+                                ))
+                              ) : (
+                                <p className="rounded-[16px] bg-white/6 p-3 text-xs text-slate-400">
+                                  No answer record saved for this older attempt.
+                                </p>
+                              )}
+                            </div>
+                          </details>
+                        </td>
+                      </tr>
+                    );
+                  })
                 ) : (
                   <tr>
-                    <td className="py-6 text-slate-400" colSpan={7}>
+                    <td className="py-6 text-slate-400" colSpan={10}>
                       No stage results match the current filters.
                     </td>
                   </tr>

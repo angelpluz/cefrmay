@@ -12,6 +12,7 @@ import {
   type GameChoice,
   type GameData,
 } from "@/lib/gameEngine";
+import type { StageAnswerRecordInput } from "@/lib/research-contract";
 
 type FeedbackState = {
   message: string;
@@ -37,6 +38,7 @@ export function useGameSession({
   const [xp, setXp] = useState(initialXp);
   const [xpBurst, setXpBurst] = useState<number | null>(null);
   const [feedback, setFeedback] = useState<FeedbackState | null>(null);
+  const [answerRecords, setAnswerRecords] = useState<StageAnswerRecordInput[]>([]);
   const nextSceneTimerRef = useRef<NodeJS.Timeout | null>(null);
   const xpTimerRef = useRef<NodeJS.Timeout | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -196,6 +198,7 @@ export function useGameSession({
     playClickSound();
 
     const result = getChoiceResult(choice);
+    const correctChoice = currentScene.choices.find((item) => item.correct);
 
     if (result.isCorrect) {
       playCorrectSound();
@@ -215,6 +218,19 @@ export function useGameSession({
         setXpBurst(null);
       }, XP_BURST_DELAY_MS);
     }
+
+    setAnswerRecords((currentRecords) => [
+      ...currentRecords,
+      {
+        answeredAt: new Date().toISOString(),
+        correctAnswer: correctChoice?.text ?? "",
+        isCorrect: result.isCorrect,
+        question: currentScene.question,
+        sceneId: currentScene.sceneId,
+        selectedAnswer: choice.text,
+        xpAwarded: result.xpAwarded,
+      },
+    ]);
 
     setFeedback({
       message: result.feedback,
@@ -239,11 +255,13 @@ export function useGameSession({
 
     setCurrentSceneId(getStageEntrySceneId(stageData));
     setXp(initialXp);
+    setAnswerRecords([]);
     setXpBurst(null);
     setFeedback(null);
   };
 
   return {
+    answerRecords,
     completion,
     currentScene,
     currentSceneId,

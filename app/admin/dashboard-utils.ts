@@ -15,6 +15,8 @@ export type SearchParamsInput = {
 
 export type StageAnalytics = {
   attempts: number;
+  averageCorrectCount: number;
+  averageIncorrectCount: number;
   averageStageXp: number;
   averageStars: number;
   averageTotalXp: number;
@@ -72,6 +74,8 @@ export function buildStageAnalytics<
     stageId: string;
     stageLabel: string;
     stageTitle: string;
+    correctCount?: number;
+    incorrectCount?: number;
     stageXp: number;
     stars: number;
     totalXp: number;
@@ -82,6 +86,8 @@ export function buildStageAnalytics<
   for (const result of results) {
     const current = stageMap.get(result.stageId) || {
       attempts: 0,
+      averageCorrectCount: 0,
+      averageIncorrectCount: 0,
       averageStageXp: 0,
       averageStars: 0,
       averageTotalXp: 0,
@@ -96,6 +102,8 @@ export function buildStageAnalytics<
     };
 
     current.attempts += 1;
+    current.averageCorrectCount += result.correctCount ?? 0;
+    current.averageIncorrectCount += result.incorrectCount ?? 0;
     current.averageStageXp += result.stageXp;
     current.averageStars += result.stars;
     current.averageTotalXp += result.totalXp;
@@ -116,6 +124,12 @@ export function buildStageAnalytics<
   return Array.from(stageMap.values())
     .map((stage) => ({
       ...stage,
+      averageCorrectCount: stage.attempts
+        ? stage.averageCorrectCount / stage.attempts
+        : 0,
+      averageIncorrectCount: stage.attempts
+        ? stage.averageIncorrectCount / stage.attempts
+        : 0,
       averageStageXp: stage.attempts
         ? stage.averageStageXp / stage.attempts
         : 0,

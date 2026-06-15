@@ -2,7 +2,10 @@ import {
   getBackendDashboard,
   getBackendPlayerSession,
 } from "@/lib/backend-api";
-import type { PlayerProfile } from "@/lib/research-contract";
+import type {
+  PlayerProfile,
+  StageAnswerRecordInput,
+} from "@/lib/research-contract";
 import { getPlayerSession } from "@/lib/session";
 
 function toDate(value: string) {
@@ -16,6 +19,44 @@ function mapPlayerProfile(player: PlayerProfile) {
     uid: player.uid,
     username: player.username,
   } satisfies PlayerProfile;
+}
+
+function isStageAnswerRecord(value: unknown): value is StageAnswerRecordInput {
+  if (!value || typeof value !== "object") {
+    return false;
+  }
+
+  const record = value as Partial<StageAnswerRecordInput>;
+
+  return (
+    typeof record.answeredAt === "string" &&
+    typeof record.correctAnswer === "string" &&
+    typeof record.isCorrect === "boolean" &&
+    typeof record.question === "string" &&
+    typeof record.sceneId === "string" &&
+    typeof record.selectedAnswer === "string" &&
+    typeof record.xpAwarded === "number"
+  );
+}
+
+function mapStageResult<T extends { completedAt: string }>(result: T) {
+  const record = result as T & {
+    answerRecords?: unknown;
+    correctCount?: unknown;
+    incorrectCount?: unknown;
+  };
+
+  return {
+    ...result,
+    answerRecords: Array.isArray(record.answerRecords)
+      ? record.answerRecords.filter(isStageAnswerRecord)
+      : [],
+    completedAt: toDate(result.completedAt),
+    correctCount:
+      typeof record.correctCount === "number" ? record.correctCount : 0,
+    incorrectCount:
+      typeof record.incorrectCount === "number" ? record.incorrectCount : 0,
+  };
 }
 
 export async function getCurrentPlayerProfile() {
@@ -55,10 +96,9 @@ export async function getCurrentPlayerState() {
 
 export async function getResearchDashboardData(accessToken: string) {
   const dashboard = await getBackendDashboard(accessToken);
-  const allResults = (dashboard.allResults || dashboard.recentResults).map((result) => ({
-    ...result,
-    completedAt: toDate(result.completedAt),
-  }));
+  const allResults = (dashboard.allResults || dashboard.recentResults).map(
+    mapStageResult,
+  );
 
   return {
     allResults,
@@ -72,15 +112,9 @@ export async function getResearchDashboardData(accessToken: string) {
             updatedAt: toDate(player.progress.updatedAt),
           }
         : null,
-      recentResults: player.recentResults.map((result) => ({
-        ...result,
-        completedAt: toDate(result.completedAt),
-      })),
+      recentResults: player.recentResults.map(mapStageResult),
     })),
-    recentResults: dashboard.recentResults.map((result) => ({
-      ...result,
-      completedAt: toDate(result.completedAt),
-    })),
+    recentResults: dashboard.recentResults.map(mapStageResult),
     stageBreakdown: dashboard.stageBreakdown,
     summary: dashboard.summary,
   };

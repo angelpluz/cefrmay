@@ -18,6 +18,7 @@ import {
 import type {
   GameProgressInput,
   PlayerProfile,
+  StageAnswerRecordInput,
   StageResultInput,
 } from "@/lib/research-contract";
 
@@ -302,6 +303,9 @@ export default function GameApp({
   };
 
   const handleStageComplete = (payload: {
+    answerRecords: StageAnswerRecordInput[];
+    correctCount: number;
+    incorrectCount: number;
     stageXp: number;
     stars: number;
     totalXp: number;
@@ -324,6 +328,9 @@ export default function GameApp({
     setScreen("result");
 
     void postJson("/api/stage-results", {
+      answerRecords: payload.answerRecords,
+      correctCount: payload.correctCount,
+      incorrectCount: payload.incorrectCount,
       stageId: activeStage.id,
       stageLabel,
       stageTitle: activeStage.title,
@@ -437,6 +444,7 @@ export default function GameApp({
 
       {screen === "play" ? (
         <GameScene
+          key={sessionSeed}
           initialSceneId={currentSceneId ?? activeStage.entrySceneId}
           initialXp={xp}
           onBack={() => setScreen("select")}
