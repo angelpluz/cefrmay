@@ -13,6 +13,7 @@ import {
 import { loginAdminAction, logoutAdminAction } from "./actions";
 
 import { getResearchDashboardData } from "@/lib/research";
+import type { StageAnswerRecordInput } from "@/lib/research-contract";
 import { getAdminCredentials, getAdminSession } from "@/lib/session";
 
 function AdminLogin(props: {
@@ -120,6 +121,59 @@ function DashboardError(props: { message: string }) {
         </section>
       </div>
     </main>
+  );
+}
+
+function AnswerRecordsDetails(props: {
+  answerRecords: StageAnswerRecordInput[];
+}) {
+  return (
+    <details className="min-w-80">
+      <summary className="cursor-pointer text-sm font-bold text-cyan-200">
+        {props.answerRecords.length} records
+      </summary>
+      <div className="mt-3 max-w-xl space-y-3">
+        {props.answerRecords.length > 0 ? (
+          props.answerRecords.map((record, recordIndex) => (
+            <div
+              key={`${record.sceneId}-${recordIndex}`}
+              className="rounded-[16px] bg-white/6 p-3 text-xs leading-5 text-slate-300"
+            >
+              <div className="flex flex-wrap items-center gap-2">
+                <span
+                  className={
+                    record.isCorrect
+                      ? "font-bold text-emerald-300"
+                      : "font-bold text-rose-300"
+                  }
+                >
+                  {record.isCorrect ? "Correct" : "Wrong"}
+                </span>
+                <span className="font-bold text-amber-200">
+                  +{record.xpAwarded} XP
+                </span>
+                <span className="text-slate-500">{record.sceneId}</span>
+              </div>
+              <p className="mt-2 text-slate-200">{record.question}</p>
+              <p className="mt-2">
+                Selected:{" "}
+                <span className="text-white">{record.selectedAnswer}</span>
+              </p>
+              {!record.isCorrect ? (
+                <p>
+                  Correct:{" "}
+                  <span className="text-white">{record.correctAnswer}</span>
+                </p>
+              ) : null}
+            </div>
+          ))
+        ) : (
+          <p className="rounded-[16px] bg-white/6 p-3 text-xs text-slate-400">
+            No answer record saved for this older attempt.
+          </p>
+        )}
+      </div>
+    </details>
   );
 }
 
@@ -239,6 +293,66 @@ export default async function AdminPage(props: {
     ...item,
     valueLabel: `${item.value}`,
   }));
+  type DashboardResult = (typeof filteredResults)[number];
+  const playerStageRows = Array.from(
+    filteredResults
+      .reduce(
+        (rowMap, result) => {
+          const key = `${result.playerUid}:${result.stageId}`;
+          const current = rowMap.get(key);
+
+          if (!current) {
+            rowMap.set(key, {
+              attempts: 1,
+              latestResult: result,
+              playerPhone: result.playerPhone,
+              playerUid: result.playerUid,
+              playerUsername: result.playerUsername,
+              stageId: result.stageId,
+              stageLabel: result.stageLabel,
+              stageTitle: result.stageTitle,
+              totalCorrectCount: result.correctCount,
+              totalIncorrectCount: result.incorrectCount,
+            });
+
+            return rowMap;
+          }
+
+          current.attempts += 1;
+          current.totalCorrectCount += result.correctCount;
+          current.totalIncorrectCount += result.incorrectCount;
+
+          if (
+            result.completedAt.getTime() >
+            current.latestResult.completedAt.getTime()
+          ) {
+            current.latestResult = result;
+          }
+
+          return rowMap;
+        },
+        new Map<
+          string,
+          {
+            attempts: number;
+            latestResult: DashboardResult;
+            playerPhone: string;
+            playerUid: string;
+            playerUsername: string;
+            stageId: string;
+            stageLabel: string;
+            stageTitle: string;
+            totalCorrectCount: number;
+            totalIncorrectCount: number;
+          }
+        >(),
+      )
+      .values(),
+  ).sort(
+    (left, right) =>
+      right.latestResult.completedAt.getTime() -
+      left.latestResult.completedAt.getTime(),
+  );
 
   return (
     <main className="min-h-[100dvh] px-5 py-6 text-white">
@@ -607,6 +721,84 @@ export default async function AdminPage(props: {
 
         <section className="rounded-[32px] border border-white/10 bg-slate-950/76 p-6 backdrop-blur-xl">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200">
+            Player Stage Summary
+          </p>
+          <h2 className="mt-3 text-2xl font-black tracking-[-0.04em]">
+            Correct and Wrong Answers by Participant
+          </h2>
+
+          <div className="mt-5 overflow-x-auto">
+            <table className="min-w-full text-left text-sm">
+              <thead className="text-xs uppercase tracking-[0.22em] text-slate-400">
+                <tr>
+                  <th className="pb-3 pr-4">Player</th>
+                  <th className="pb-3 pr-4">Participant Code</th>
+                  <th className="pb-3 pr-4">Stage</th>
+                  <th className="pb-3 pr-4">Attempts</th>
+                  <th className="pb-3 pr-4">Latest Correct</th>
+                  <th className="pb-3 pr-4">Latest Wrong</th>
+                  <th className="pb-3 pr-4">All Correct</th>
+                  <th className="pb-3 pr-4">All Wrong</th>
+                  <th className="pb-3 pr-4">Last Played</th>
+                  <th className="pb-3">Latest Answer Records</th>
+                </tr>
+              </thead>
+              <tbody>
+                {playerStageRows.length > 0 ? (
+                  playerStageRows.slice(0, 120).map((row) => (
+                    <tr
+                      key={`${row.playerUid}-${row.stageId}`}
+                      className="border-t border-white/6 align-top"
+                    >
+                      <td className="py-4 pr-4">
+                        <p className="font-bold text-white">{row.playerUsername}</p>
+                        <p className="text-xs uppercase tracking-[0.18em] text-cyan-200">
+                          {row.playerUid}
+                        </p>
+                      </td>
+                      <td className="py-4 pr-4 text-slate-300">{row.playerPhone}</td>
+                      <td className="py-4 pr-4 text-slate-300">
+                        {row.stageLabel} / {row.stageTitle}
+                      </td>
+                      <td className="py-4 pr-4 font-bold text-white">
+                        {row.attempts}
+                      </td>
+                      <td className="py-4 pr-4 font-bold text-emerald-300">
+                        {row.latestResult.correctCount}
+                      </td>
+                      <td className="py-4 pr-4 font-bold text-rose-300">
+                        {row.latestResult.incorrectCount}
+                      </td>
+                      <td className="py-4 pr-4 font-bold text-emerald-300">
+                        {row.totalCorrectCount}
+                      </td>
+                      <td className="py-4 pr-4 font-bold text-rose-300">
+                        {row.totalIncorrectCount}
+                      </td>
+                      <td className="py-4 pr-4 text-slate-300">
+                        {formatDateTime(row.latestResult.completedAt)}
+                      </td>
+                      <td className="py-4">
+                        <AnswerRecordsDetails
+                          answerRecords={row.latestResult.answerRecords ?? []}
+                        />
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td className="py-6 text-slate-400" colSpan={10}>
+                      No player stage rows match the current filters.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section className="rounded-[32px] border border-white/10 bg-slate-950/76 p-6 backdrop-blur-xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200">
             Result Explorer
           </p>
           <h2 className="mt-3 text-2xl font-black tracking-[-0.04em]">
@@ -668,60 +860,7 @@ export default async function AdminPage(props: {
                           {result.totalXp}
                         </td>
                         <td className="py-4">
-                          <details className="min-w-80">
-                            <summary className="cursor-pointer text-sm font-bold text-cyan-200">
-                              {answerRecords.length} records
-                            </summary>
-                            <div className="mt-3 max-w-xl space-y-3">
-                              {answerRecords.length > 0 ? (
-                                answerRecords.map((record, recordIndex) => (
-                                  <div
-                                    key={`${record.sceneId}-${recordIndex}`}
-                                    className="rounded-[16px] bg-white/6 p-3 text-xs leading-5 text-slate-300"
-                                  >
-                                    <div className="flex flex-wrap items-center gap-2">
-                                      <span
-                                        className={
-                                          record.isCorrect
-                                            ? "font-bold text-emerald-300"
-                                            : "font-bold text-rose-300"
-                                        }
-                                      >
-                                        {record.isCorrect ? "Correct" : "Wrong"}
-                                      </span>
-                                      <span className="font-bold text-amber-200">
-                                        +{record.xpAwarded} XP
-                                      </span>
-                                      <span className="text-slate-500">
-                                        {record.sceneId}
-                                      </span>
-                                    </div>
-                                    <p className="mt-2 text-slate-200">
-                                      {record.question}
-                                    </p>
-                                    <p className="mt-2">
-                                      Selected:{" "}
-                                      <span className="text-white">
-                                        {record.selectedAnswer}
-                                      </span>
-                                    </p>
-                                    {!record.isCorrect ? (
-                                      <p>
-                                        Correct:{" "}
-                                        <span className="text-white">
-                                          {record.correctAnswer}
-                                        </span>
-                                      </p>
-                                    ) : null}
-                                  </div>
-                                ))
-                              ) : (
-                                <p className="rounded-[16px] bg-white/6 p-3 text-xs text-slate-400">
-                                  No answer record saved for this older attempt.
-                                </p>
-                              )}
-                            </div>
-                          </details>
+                          <AnswerRecordsDetails answerRecords={answerRecords} />
                         </td>
                       </tr>
                     );
