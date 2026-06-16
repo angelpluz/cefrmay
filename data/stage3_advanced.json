@@ -1,0 +1,276 @@
+{
+  "id": "stage-3",
+  "stage": "Mountain Market",
+  "title": "Phu Thap Boek Market",
+  "entrySceneId": "scene-1",
+  "totalScenes": 5,
+  "backgroundImage": "/phu-thap-boek-view.jpg",
+  "character": {
+    "name": "Alex",
+    "role": "Tourist",
+    "avatar": "🎒",
+    "avatarImage": "/alex-avatar.jpg"
+  },
+  "scenes": [
+    {
+      "sceneId": "scene-1",
+      "id": 1,
+      "type": "speaking",
+      "difficulty": "medium",
+      "location": "Phu Thap Boek Market",
+      "context": "speaking / medium / polite opener",
+      "sceneImage": "/phu-thap-boek-view.jpg",
+      "story": {
+        "title": "You arrive at a small market on the mountain.",
+        "text": "Fresh vegetables are displayed in baskets, and several sellers are speaking with customers."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🥬",
+        "text": "Wow! There are so many vegetables here. I want to ask the price politely."
+      },
+      "question": "What should Alex say first?",
+      "choices": [
+        {
+          "text": "Excuse me, how much is this bundle of vegetables?",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good start! 💰 The seller understands the question clearly."
+          },
+          "xp": 20,
+          "nextSceneId": "scene-2"
+        },
+        {
+          "text": "How expensive you are?",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks confused 😅 because the sentence sounds unnatural and unclear."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-2"
+        },
+        {
+          "text": "Give me that now.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "That sounds too direct 😬 and not polite for a market conversation."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-2"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-2",
+      "id": 2,
+      "type": "vocab",
+      "difficulty": "medium",
+      "location": "Phu Thap Boek Market",
+      "context": "vocab / medium / meaning from context",
+      "sceneImage": "/phu-thap-boek-market.jpg",
+      "story": {
+        "title": "You look at a price tag.",
+        "text": "A basket of vegetables is priced at 100 baht. Alex hears another customer say, 'That is cheap.'"
+      },
+      "character": "System",
+      "dialogue": {
+        "speaker": "System",
+        "mood": "🏷️",
+        "text": "Price: 100 baht"
+      },
+      "question": "In this price context, what does 'cheap' mean?",
+      "choices": [
+        {
+          "text": "It costs little or has a low price.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct! 👍 Alex understands the price comment."
+          },
+          "xp": 20,
+          "nextSceneId": "scene-3"
+        },
+        {
+          "text": "It is located far away from the market.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Wrong meaning ❌ The word is about price here, not distance."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-3"
+        },
+        {
+          "text": "It is much heavier than expected.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Not related 🤔 The sentence does not mention weight."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-3"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-3",
+      "id": 3,
+      "type": "speaking",
+      "difficulty": "hard",
+      "location": "Phu Thap Boek Market",
+      "context": "speaking / hard / polite bargaining",
+      "sceneImage": "/phu-thap-boek-market.jpg",
+      "story": {
+        "title": "Alex wants a better price.",
+        "text": "Alex thinks the price is slightly high but still wants to be respectful to the seller."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "💸",
+        "text": "This is a bit expensive. How can I ask for a lower price without being rude?"
+      },
+      "question": "What should Alex say?",
+      "choices": [
+        {
+          "text": "Could you lower the price a little if I buy two?",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Nice bargaining 😎 The request is polite and gives a reason."
+          },
+          "xp": 25,
+          "nextSceneId": "scene-4"
+        },
+        {
+          "text": "You must make it free because I am a tourist.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "That is not polite 😅 and gives an unfair demand."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-4"
+        },
+        {
+          "text": "Give me 80 baht now, or I will blame your shop.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks embarrassed 😳 because the sentence sounds aggressive."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-4"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-4",
+      "id": 4,
+      "type": "speaking",
+      "difficulty": "hard",
+      "location": "Phu Thap Boek Market",
+      "context": "speaking / hard / accepting an offer",
+      "sceneImage": "/phu-thap-boek-market.jpg",
+      "story": {
+        "title": "The seller offers a new price.",
+        "text": "The seller smiles and offers a better price after Alex asks politely."
+      },
+      "character": "Seller",
+      "dialogue": {
+        "speaker": "Seller",
+        "mood": "🤝",
+        "text": "Okay, 80 baht for one bundle."
+      },
+      "question": "What is the best response?",
+      "choices": [
+        {
+          "text": "That sounds fair. I'll take one, please.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Deal! 🤝 The conversation ends politely."
+          },
+          "xp": 25,
+          "nextSceneId": "scene-5"
+        },
+        {
+          "text": "I will pay later someday.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "That sounds unclear 😅 and would not complete the purchase."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-5"
+        },
+        {
+          "text": "I will take two without paying.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex steps back 😬 because that would be dishonest."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-5"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-5",
+      "id": 5,
+      "type": "mixed",
+      "difficulty": "hard",
+      "location": "Phu Thap Boek Market",
+      "context": "mixed / hard / social reflection",
+      "sceneImage": "/phu-thap-boek-view.jpg",
+      "story": {
+        "title": "Alex is happy with the purchase.",
+        "text": "Alex bought vegetables politely and learned how to bargain without offending the seller."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "😊",
+        "text": "That was fun! I love this market."
+      },
+      "question": "Choose the best reply.",
+      "choices": [
+        {
+          "text": "I'm glad you enjoyed it; the market is a good place to practise polite bargaining.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex smiles 😊 and feels more confident speaking with sellers."
+          },
+          "xp": 30,
+          "nextSceneId": null
+        },
+        {
+          "text": "You should tell the seller everything is bad after buying it.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks confused 😕 because that would be rude and unnecessary."
+          },
+          "xp": 0,
+          "nextSceneId": null
+        },
+        {
+          "text": "No, markets never have vegetables.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "That does not match the scene ❌ because Alex just bought vegetables."
+          },
+          "xp": 0,
+          "nextSceneId": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
-import stage1Data from "@/data/stage1.json";
-import stage2Data from "@/data/stage2.json";
-import stage3Data from "@/data/stage3.json";
-import stage4Data from "@/data/stage4.json";
+import stage1Data from "@/data/stage1_advanced.json";
+import stage2Data from "@/data/stage2_advanced.json";
+import stage3Data from "@/data/stage3_advanced.json";
+import stage4Data from "@/data/stage4_advanced.json";
 import type { GameData } from "@/lib/gameEngine";
 
 const STAGES = {

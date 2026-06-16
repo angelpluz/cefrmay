@@ -1,0 +1,276 @@
+{
+  "id": "stage-2",
+  "stage": "Historical Park",
+  "title": "Si Thep Historical Park",
+  "entrySceneId": "scene-1",
+  "totalScenes": 5,
+  "backgroundImage": "/si-thep-bg.jpg",
+  "character": {
+    "name": "Alex",
+    "role": "Tourist",
+    "avatar": "🎒",
+    "avatarImage": "/alex-avatar.jpg"
+  },
+  "scenes": [
+    {
+      "sceneId": "scene-1",
+      "id": 1,
+      "type": "reading",
+      "difficulty": "medium",
+      "location": "Si Thep Historical Park",
+      "context": "reading / medium / heritage inference",
+      "sceneImage": "/si-thep-pano.jpg",
+      "story": {
+        "title": "You arrive at Si Thep Historical Park.",
+        "text": "You arrive at a large historical park with ancient structures, walking paths, and information boards for visitors."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🏛️",
+        "text": "Wow... this place looks ancient. What kind of place is it?"
+      },
+      "question": "Choose the most accurate explanation.",
+      "choices": [
+        {
+          "text": "It is an ancient city site where visitors can study ruins and cultural heritage.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex nods in understanding 🏛️ and starts reading the information board."
+          },
+          "xp": 20,
+          "nextSceneId": "scene-2"
+        },
+        {
+          "text": "It is a newly built theme park designed only for taking funny photos.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks confused 😕 because the ruins and signs show historical importance."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-2"
+        },
+        {
+          "text": "It is mainly a shopping zone where visitors can bargain for souvenirs.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex shakes the head 😅 because the setting is focused on heritage, not shopping."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-2"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-2",
+      "id": 2,
+      "type": "reading",
+      "difficulty": "medium",
+      "location": "Si Thep Historical Park",
+      "context": "reading / medium / signage",
+      "sceneImage": "/no-entry-sign.jpg",
+      "story": {
+        "title": "You see a restricted-area sign.",
+        "text": "A sign near a fragile section of the ruins says: 'No Entry'. A marked visitor path continues to the right."
+      },
+      "character": "System",
+      "dialogue": {
+        "speaker": "System",
+        "mood": "🚫",
+        "text": "Sign: 'No Entry'"
+      },
+      "question": "What should Alex understand from the sign?",
+      "choices": [
+        {
+          "text": "Access is restricted, so visitors should stay outside and follow the marked route.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct! 🚫 Alex stays on the visitor path."
+          },
+          "xp": 20,
+          "nextSceneId": "scene-3"
+        },
+        {
+          "text": "Visitors may enter briefly if they do not touch anything.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex steps back 😬 because 'No Entry' means the area is not open to visitors."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-3"
+        },
+        {
+          "text": "The sign only applies to staff, so tourists can ignore it.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks doubtful 🤔 because public signs are meant to guide visitors too."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-3"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-3",
+      "id": 3,
+      "type": "reading",
+      "difficulty": "hard",
+      "location": "Si Thep Historical Park",
+      "context": "reading / hard / directions",
+      "sceneImage": "/si-thep-pano.jpg",
+      "story": {
+        "title": "Alex looks around for directions.",
+        "text": "The map shows a visitor entrance, a main path, and several protected areas that should not be crossed."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🧭",
+        "text": "Where is the proper entrance? I do not want to walk into the wrong area."
+      },
+      "question": "Choose the best answer.",
+      "choices": [
+        {
+          "text": "Follow the marked path to the visitor entrance; I can point it out on the map.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex walks toward the entrance 🚶 and avoids the protected area."
+          },
+          "xp": 25,
+          "nextSceneId": "scene-4"
+        },
+        {
+          "text": "The entrance is anywhere that has no guard standing nearby.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks uncertain 😵 because the absence of a guard does not mean access is allowed."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-4"
+        },
+        {
+          "text": "Take a shortcut through the ruins because it will save time.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex steps back 😬 because shortcuts could damage fragile areas."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-4"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-4",
+      "id": 4,
+      "type": "reading",
+      "difficulty": "hard",
+      "location": "Si Thep Historical Park",
+      "context": "reading / hard / vocabulary in context",
+      "sceneImage": "/si-thep-bg.jpg",
+      "story": {
+        "title": "You see an information board.",
+        "text": "The board reads: 'Ancient City of Si Thep'. Alex asks what the word 'ancient' suggests in this context."
+      },
+      "character": "System",
+      "dialogue": {
+        "speaker": "System",
+        "mood": "📖",
+        "text": "Text: 'Ancient City of Si Thep'"
+      },
+      "question": "In this context, what does 'ancient' mean?",
+      "choices": [
+        {
+          "text": "It refers to a settlement from the distant past, not a modern town.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct! 🏛️ Alex understands that the word describes historical age."
+          },
+          "xp": 25,
+          "nextSceneId": "scene-5"
+        },
+        {
+          "text": "It means the city was newly built to look old.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex shakes the head 😅 because 'ancient' does not mean newly built."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-5"
+        },
+        {
+          "text": "It describes a place that is noisy and crowded.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex frowns 🤔 because the word describes time period, not sound or crowd size."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-5"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-5",
+      "id": 5,
+      "type": "reading",
+      "difficulty": "hard",
+      "location": "Si Thep Historical Park",
+      "context": "reading / hard / reflective response",
+      "sceneImage": "/si-thep-pano.jpg",
+      "story": {
+        "title": "Alex reflects on the visit.",
+        "text": "After reading several signs and walking along the marked path, Alex realizes the park is both beautiful and historically important."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "😊",
+        "text": "This place is very interesting. I can imagine how old it must be."
+      },
+      "question": "Choose the best response.",
+      "choices": [
+        {
+          "text": "Yes, the ruins and information boards help visitors imagine life here long ago.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex smiles 😊 and continues reading carefully."
+          },
+          "xp": 30,
+          "nextSceneId": null
+        },
+        {
+          "text": "Yes, and old places do not need careful protection anymore.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks concerned 😕 because old sites often need extra protection."
+          },
+          "xp": 0,
+          "nextSceneId": null
+        },
+        {
+          "text": "No, reading signs is unnecessary when a place looks old.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex disagrees 😅 because signs help visitors understand the site."
+          },
+          "xp": 0,
+          "nextSceneId": null
+        }
+      ]
+    }
+  ]
+}

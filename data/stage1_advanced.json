@@ -1,0 +1,259 @@
+{
+  "id": "stage-1",
+  "title": "Temple Guide Adventure",
+  "entrySceneId": "scene-1",
+  "backgroundImage": "/temple-arrival.jpg",
+  "character": {
+    "name": "Alex",
+    "role": "Tourist",
+    "avatar": "🧳",
+    "avatarImage": "/alex-avatar.jpg"
+  },
+  "scenes": [
+    {
+      "sceneId": "scene-1",
+      "id": 1,
+      "location": "Golden Temple Court",
+      "context": "Photo policy / respectful tourism",
+      "sceneImage": "/temple-arrival.jpg",
+      "story": {
+        "title": "Temple Arrival",
+        "text": "You are guiding Alex through the first courtyard. Several visitors are taking photos quietly, while a few signs explain where photography is allowed."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "📸",
+        "text": "This temple looks amazing. Can I take photos here, or would that be rude?"
+      },
+      "question": "Which answer is the most respectful and specific?",
+      "choices": [
+        {
+          "text": "You may take photos only in permitted areas, without flash, and without blocking worshippers.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex nods 😊 and checks the nearby sign before taking a quiet photo."
+          },
+          "xp": 25,
+          "nextSceneId": "scene-2"
+        },
+        {
+          "text": "You can photograph anything if you stay quiet, even restricted murals or prayer areas.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex hesitates 😬 because being quiet does not cancel the rules."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-2"
+        },
+        {
+          "text": "You should ask Alex to pose on the steps near the prayer area for a better picture.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks unsure 😕 because the advice could disturb people who are praying."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-2"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-2",
+      "id": 2,
+      "location": "Prayer Hall Entrance",
+      "context": "Temple etiquette / threshold",
+      "sceneImage": "/prayer-hall.jpg",
+      "story": {
+        "title": "At the Prayer Hall",
+        "text": "Alex reaches the entrance of the main hall. A shoe rack is placed beside the doorway, and visitors step inside quietly."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🤔",
+        "text": "Should I take off my shoes now, or after I walk inside?"
+      },
+      "question": "Choose the clearest guidance.",
+      "choices": [
+        {
+          "text": "Please remove your shoes before crossing the threshold, then place them neatly on the rack.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex smiles 🙌 and leaves the shoes neatly outside the hall."
+          },
+          "xp": 25,
+          "nextSceneId": "scene-3"
+        },
+        {
+          "text": "Walk inside first, then remove your shoes only if someone complains.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex stops 😬 because that would ignore the expected etiquette."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-3"
+        },
+        {
+          "text": "Only sandals have to be removed; closed shoes are usually fine indoors.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex checks the sign 😕 and sees that all shoes should stay outside."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-3"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-3",
+      "id": 3,
+      "location": "Temple Mural Gallery",
+      "context": "Quiet zone / group communication",
+      "sceneImage": "/temple-wall.jpg",
+      "story": {
+        "title": "Inside the Gallery",
+        "text": "The mural gallery is peaceful. A small tour group is listening to a guide, and other visitors are slowly observing the wall paintings."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "😮",
+        "text": "My friends are behind me. Is it okay if I speak loudly so they can hear the explanation?"
+      },
+      "question": "Pick the most considerate reply.",
+      "choices": [
+        {
+          "text": "Please keep your voice low; if you need to explain more, step aside or wait until you are outside.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex whispers 🙂 and signals the friends to move closer quietly."
+          },
+          "xp": 25,
+          "nextSceneId": "scene-4"
+        },
+        {
+          "text": "It is fine to speak loudly because historical information is useful for everyone.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex notices nearby visitors staring 😬 and lowers the voice."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-4"
+        },
+        {
+          "text": "Record a loud video quickly before the staff notice.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks embarrassed 😳 because that would be disrespectful and risky."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-4"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-4",
+      "id": 4,
+      "location": "Incense Courtyard",
+      "context": "Offering area / safety and respect",
+      "sceneImage": "/prayer-hall.jpg",
+      "story": {
+        "title": "Offering Time",
+        "text": "The courtyard is busy with people making offerings. There are posted instructions, a clear queue, and a staff member helping visitors."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🕯️",
+        "text": "I want to join respectfully. What should I do before making an offering?"
+      },
+      "question": "What is the best instruction?",
+      "choices": [
+        {
+          "text": "Read the posted instructions, wait calmly in the queue, and handle incense or candles carefully.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex smiles 😊 and follows the queue without rushing."
+          },
+          "xp": 30,
+          "nextSceneId": "scene-5"
+        },
+        {
+          "text": "Light as many incense sticks as possible because more smoke always shows more respect.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex coughs 😷 and realizes the posted limit should be followed."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-5"
+        },
+        {
+          "text": "Skip the signs and copy the nearest visitor, even if you are not sure what they are doing.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex pauses 😕 because copying without understanding could lead to a mistake."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-5"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-5",
+      "id": 5,
+      "location": "Temple Garden Exit",
+      "context": "Farewell / polite closing",
+      "sceneImage": "/temple-wall.jpg",
+      "story": {
+        "title": "Journey End",
+        "text": "Alex is ready to leave the temple garden. Staff members are helping visitors near the exit while a small ceremony continues nearby."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🌤️",
+        "text": "Thank you for guiding me. How can I thank the staff politely without interrupting anyone?"
+      },
+      "question": "Choose the most natural response.",
+      "choices": [
+        {
+          "text": "Thank them briefly with a respectful smile, and avoid interrupting the ceremony or other visitors.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Alex beams 😄 and offers a quiet, respectful thank you."
+          },
+          "xp": 35,
+          "nextSceneId": null
+        },
+        {
+          "text": "Call the staff loudly from across the garden so everyone knows you are grateful.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex looks uneasy 😕 because the loud voice would disturb the atmosphere."
+          },
+          "xp": 0,
+          "nextSceneId": null
+        },
+        {
+          "text": "Ask for special access as a reward because you were polite during the visit.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Alex frowns 😒 because politeness should not be used to demand privileges."
+          },
+          "xp": 0,
+          "nextSceneId": null
+        }
+      ]
+    }
+  ]
+}

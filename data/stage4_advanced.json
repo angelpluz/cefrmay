@@ -1,0 +1,276 @@
+{
+  "id": "stage-4",
+  "stage": "Walking Street",
+  "title": "Lom Sak Walking Street",
+  "entrySceneId": "scene-1",
+  "totalScenes": 5,
+  "backgroundImage": "/phu-thap-boek-market.jpg",
+  "character": {
+    "name": "Alex",
+    "role": "Tourist",
+    "avatar": "🎒",
+    "avatarImage": "/alex-avatar.jpg"
+  },
+  "scenes": [
+    {
+      "sceneId": "scene-1",
+      "id": 1,
+      "type": "writing",
+      "difficulty": "medium",
+      "location": "Lom Sak Walking Street",
+      "context": "writing / medium / polite sentence",
+      "sceneImage": "/phu-thap-boek-market.jpg",
+      "story": {
+        "title": "You arrive at the walking street full of food.",
+        "text": "The evening market is busy, and Alex sees many local dishes at small food stalls."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🍢",
+        "text": "Wow! Everything smells so good. I want to say this naturally."
+      },
+      "question": "Choose the correct sentence.",
+      "choices": [
+        {
+          "text": "I would like to try some local street food.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good sentence 👍 It is polite and natural."
+          },
+          "xp": 20,
+          "nextSceneId": "scene-2"
+        },
+        {
+          "text": "I would like try some street local food.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Wrong structure ❌ The phrase needs 'to try' and a natural adjective order."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-2"
+        },
+        {
+          "text": "Some local food street I like would try.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Not correct 😅 The word order is confusing."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-2"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-2",
+      "id": 2,
+      "type": "writing",
+      "difficulty": "medium",
+      "location": "Lom Sak Walking Street",
+      "context": "writing / medium / comparison",
+      "sceneImage": "/phu-thap-boek-market.jpg",
+      "story": {
+        "title": "Alex tries spicy food.",
+        "text": "Alex takes a small bite and realizes the dish is stronger than expected."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🌶️",
+        "text": "Oh! This is spicy. I want to explain that it surprised me."
+      },
+      "question": "Choose the best sentence.",
+      "choices": [
+        {
+          "text": "This dish is much spicier than I expected.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct! 🌶️ The comparison is clear and natural."
+          },
+          "xp": 20,
+          "nextSceneId": "scene-3"
+        },
+        {
+          "text": "This dish is more spicy than me expected.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Wrong grammar ❌ Use 'spicier than I expected'."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-3"
+        },
+        {
+          "text": "This dish much spicy than expected I.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Incorrect 😅 The sentence order is not natural."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-3"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-3",
+      "id": 3,
+      "type": "writing",
+      "difficulty": "hard",
+      "location": "Lom Sak Walking Street",
+      "context": "writing / hard / paired adjectives",
+      "sceneImage": "/phu-thap-boek-market.jpg",
+      "story": {
+        "title": "Alex enjoys dessert.",
+        "text": "Alex tries a cold dessert after the spicy food and wants to describe the taste more precisely."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🍰",
+        "text": "This dessert is sweet, but it also feels cool and light."
+      },
+      "question": "Choose the correct sentence.",
+      "choices": [
+        {
+          "text": "The dessert is both sweet and refreshing.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Nice description 🍰 The sentence combines two qualities clearly."
+          },
+          "xp": 25,
+          "nextSceneId": "scene-4"
+        },
+        {
+          "text": "The dessert both is sweet and refreshing.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Wrong order ❌ Place 'both' before the first adjective phrase."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-4"
+        },
+        {
+          "text": "Refreshing and sweet dessert is both the.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Incorrect 😅 The word order is not grammatical."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-4"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-4",
+      "id": 4,
+      "type": "writing",
+      "difficulty": "hard",
+      "location": "Lom Sak Walking Street",
+      "context": "writing / hard / giving reasons",
+      "sceneImage": "/phu-thap-boek-view.jpg",
+      "story": {
+        "title": "Alex asks for your opinion.",
+        "text": "Alex wants to know whether you like the food and why it tastes good."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🤔",
+        "text": "Do you like this food? Why?"
+      },
+      "question": "Choose the best answer.",
+      "choices": [
+        {
+          "text": "Yes, I like it, especially because the flavors are balanced.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Great answer 👍 It gives an opinion and a reason."
+          },
+          "xp": 25,
+          "nextSceneId": "scene-5"
+        },
+        {
+          "text": "Yes, I like because balanced the flavors are.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Wrong structure ❌ The reason clause needs natural word order."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-5"
+        },
+        {
+          "text": "I yes like it very because flavors.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Incorrect 😅 The sentence is missing a clear structure."
+          },
+          "xp": 0,
+          "nextSceneId": "scene-5"
+        }
+      ]
+    },
+    {
+      "sceneId": "scene-5",
+      "id": 5,
+      "type": "writing",
+      "difficulty": "hard",
+      "location": "Lom Sak Walking Street",
+      "context": "writing / hard / reflective closing",
+      "sceneImage": "/phu-thap-boek-view.jpg",
+      "story": {
+        "title": "The night is ending and Alex reflects.",
+        "text": "The walking street is closing soon. Alex enjoyed the food, the people, and the local atmosphere."
+      },
+      "character": "Alex",
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "🌙",
+        "text": "This was an amazing experience!"
+      },
+      "question": "Choose the best reply.",
+      "choices": [
+        {
+          "text": "I'm glad you enjoyed it; walking streets are a great way to experience local culture.",
+          "correct": true,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Perfect ending 😊 The response is warm and meaningful."
+          },
+          "xp": 30,
+          "nextSceneId": null
+        },
+        {
+          "text": "I am glad enjoyed you it because culture local experience.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "Wrong sentence ❌ The word order makes the meaning unclear."
+          },
+          "xp": 0,
+          "nextSceneId": null
+        },
+        {
+          "text": "I do not care, but the walking street is a local culture experience way.",
+          "correct": false,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "That sounds rude and unnatural 😅"
+          },
+          "xp": 0,
+          "nextSceneId": null
+        }
+      ]
+    }
+  ]
+}
