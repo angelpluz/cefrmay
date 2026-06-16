@@ -211,13 +211,39 @@ export default async function AdminPage(props: {
     );
   }
 
+  const selectedPlayerUid = getQueryValue(searchParams.player) || "all";
   const selectedStage = getQueryValue(searchParams.stage) || "all";
   const selectedScore = getQueryValue(searchParams.score) || "all";
   const query = getQueryValue(searchParams.q).trim().toLowerCase();
+  const selectedPlayer =
+    selectedPlayerUid === "all"
+      ? null
+      : dashboard.playerRows.find((player) => player.uid === selectedPlayerUid) ??
+        null;
+  const playerOptions = dashboard.playerRows
+    .map((player) => ({
+      label: `${player.username} / ${player.uid}`,
+      value: player.uid,
+    }))
+    .sort((left, right) => left.label.localeCompare(right.label));
   const stageOptions = dashboard.stageBreakdown.map((stage) => ({
     label: `${stage.stageLabel} / ${stage.stageTitle}`,
     value: stage.stageId,
   }));
+
+  const buildPlayerReportHref = (playerUid: string) => {
+    const params = new URLSearchParams({ player: playerUid });
+
+    if (selectedStage !== "all") {
+      params.set("stage", selectedStage);
+    }
+
+    if (selectedScore !== "all") {
+      params.set("score", selectedScore);
+    }
+
+    return `/admin?${params.toString()}`;
+  };
 
   const resultsByPlayerUid = new Map<string, typeof dashboard.allResults>();
   for (const result of dashboard.allResults) {
@@ -227,18 +253,27 @@ export default async function AdminPage(props: {
   }
 
   const filteredResults = dashboard.allResults.filter((result) => {
+    const matchesPlayer =
+      selectedPlayerUid === "all" || result.playerUid === selectedPlayerUid;
     const matchesStage =
       selectedStage === "all" || result.stageId === selectedStage;
     const matchesScore = isInScoreRange(result.totalXp, selectedScore);
     const searchable =
       `${result.playerUsername} ${result.playerPhone} ${result.playerUid} ${result.stageTitle} ${result.stageLabel}`.toLowerCase();
 
-    return matchesStage && matchesScore && (!query || searchable.includes(query));
+    return (
+      matchesPlayer &&
+      matchesStage &&
+      matchesScore &&
+      (!query || searchable.includes(query))
+    );
   });
 
   const filteredPlayers = dashboard.playerRows.filter((player) => {
     const playerResults = resultsByPlayerUid.get(player.uid) ?? [];
     const score = player.progress?.xp ?? 0;
+    const matchesPlayer =
+      selectedPlayerUid === "all" || player.uid === selectedPlayerUid;
     const matchesScore = isInScoreRange(score, selectedScore);
     const matchesStage =
       selectedStage === "all" ||
@@ -247,7 +282,12 @@ export default async function AdminPage(props: {
     const searchable =
       `${player.username} ${player.phone} ${player.uid}`.toLowerCase();
 
-    return matchesScore && matchesStage && (!query || searchable.includes(query));
+    return (
+      matchesPlayer &&
+      matchesScore &&
+      matchesStage &&
+      (!query || searchable.includes(query))
+    );
   });
 
   const filteredStageBreakdown = buildStageAnalytics(filteredResults);
@@ -382,7 +422,7 @@ export default async function AdminPage(props: {
             </form>
           </div>
 
-          <form className="mt-6 grid gap-3 md:grid-cols-[1.2fr_0.8fr_0.8fr_auto]">
+          <form className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-[1.1fr_1fr_0.8fr_0.8fr_auto]">
             <label className="block">
               <span className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400">
                 Search
@@ -393,6 +433,24 @@ export default async function AdminPage(props: {
                 placeholder="Nickname, participant code, UID"
                 className="w-full rounded-[18px] border border-white/12 bg-white/8 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500"
               />
+            </label>
+
+            <label className="block">
+              <span className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400">
+                Participant
+              </span>
+              <select
+                name="player"
+                defaultValue={selectedPlayerUid}
+                className="w-full rounded-[18px] border border-white/12 bg-slate-900 px-4 py-3 text-sm text-white outline-none"
+              >
+                <option value="all">All Participants</option>
+                {playerOptions.map((player) => (
+                  <option key={player.value} value={player.value}>
+                    {player.label}
+                  </option>
+                ))}
+              </select>
             </label>
 
             <label className="block">
@@ -450,7 +508,11 @@ export default async function AdminPage(props: {
         <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           <DashboardMetricCard
             label="Filtered Players"
-            note="Participants matching the current search, stage, and score filters."
+            note={
+              selectedPlayer
+                ? `Report is focused on ${selectedPlayer.username}.`
+                : "Participants matching the current search, stage, and score filters."
+            }
             tone="text-cyan-200"
             value={filteredPlayers.length}
           />
@@ -681,7 +743,8 @@ export default async function AdminPage(props: {
                   <th className="pb-3 pr-4">Current Stage</th>
                   <th className="pb-3 pr-4">XP</th>
                   <th className="pb-3 pr-4">Attempts</th>
-                  <th className="pb-3">Last Active</th>
+                  <th className="pb-3 pr-4">Last Active</th>
+                  <th className="pb-3">Report</th>
                 </tr>
               </thead>
               <tbody>
@@ -705,11 +768,19 @@ export default async function AdminPage(props: {
                       <td className="py-4 text-slate-300">
                         {formatDateTime(player.lastActiveAt)}
                       </td>
+                      <td className="py-4">
+                        <a
+                          href={buildPlayerReportHref(player.uid)}
+                          className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-2 text-xs font-bold text-cyan-100"
+                        >
+                          View Report
+                        </a>
+                      </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td className="py-6 text-slate-400" colSpan={6}>
+                    <td className="py-6 text-slate-400" colSpan={7}>
                       No players match the current filters.
                     </td>
                   </tr>

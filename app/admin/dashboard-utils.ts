@@ -8,6 +8,7 @@ export const SCORE_RANGE_OPTIONS = [
 
 export type SearchParamsInput = {
   error?: string | string[];
+  player?: string | string[];
   q?: string | string[];
   score?: string | string[];
   stage?: string | string[];
