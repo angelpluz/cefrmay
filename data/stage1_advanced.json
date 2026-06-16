@@ -130,7 +130,7 @@
           "correct": true,
           "feedback": {
             "status": "correct",
-            "reaction": "Alex whispers 🙂 and signals the friends to move closer quietly."
+            "reaction": "Alex whispers 🙂 and gestures for the friends to move closer quietly."
           },
           "xp": 25,
           "nextSceneId": "scene-4"
@@ -140,7 +140,7 @@
           "correct": false,
           "feedback": {
             "status": "wrong",
-            "reaction": "Alex notices nearby visitors staring 😬 and lowers the voice."
+            "reaction": "Alex notices nearby visitors staring 😬 and lowers their voice."
           },
           "xp": 0,
           "nextSceneId": "scene-4"

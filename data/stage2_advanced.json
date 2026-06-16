@@ -57,7 +57,7 @@
           "correct": false,
           "feedback": {
             "status": "wrong",
-            "reaction": "Alex shakes the head 😅 because the setting is focused on heritage, not shopping."
+            "reaction": "Alex shakes their head 😅 because the setting is focused on heritage, not shopping."
           },
           "xp": 0,
           "nextSceneId": "scene-2"
@@ -193,7 +193,7 @@
           "correct": true,
           "feedback": {
             "status": "correct",
-            "reaction": "Correct! 🏛️ Alex understands that the word describes historical age."
+            "reaction": "Correct! 🏛️ Alex understands that the word describes how old the site is."
           },
           "xp": 25,
           "nextSceneId": "scene-5"
@@ -203,7 +203,7 @@
           "correct": false,
           "feedback": {
             "status": "wrong",
-            "reaction": "Alex shakes the head 😅 because 'ancient' does not mean newly built."
+            "reaction": "Alex shakes their head 😅 because 'ancient' does not mean newly built."
           },
           "xp": 0,
           "nextSceneId": "scene-5"
@@ -213,7 +213,7 @@
           "correct": false,
           "feedback": {
             "status": "wrong",
-            "reaction": "Alex frowns 🤔 because the word describes time period, not sound or crowd size."
+            "reaction": "Alex frowns 🤔 because the word describes age, not sound or crowd size."
           },
           "xp": 0,
           "nextSceneId": "scene-5"

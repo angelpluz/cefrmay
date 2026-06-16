@@ -137,7 +137,7 @@
       "question": "What should Alex say?",
       "choices": [
         {
-          "text": "Could you lower the price a little if I buy two?",
+          "text": "Could you lower the price a little if I buy two bundles?",
           "correct": true,
           "feedback": {
             "status": "correct",
@@ -241,7 +241,7 @@
       "question": "Choose the best reply.",
       "choices": [
         {
-          "text": "I'm glad you enjoyed it; the market is a good place to practise polite bargaining.",
+          "text": "I'm glad you enjoyed it; the market is a good place to practice polite bargaining.",
           "correct": true,
           "feedback": {
             "status": "correct",
