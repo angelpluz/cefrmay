@@ -1,0 +1,756 @@
+{
+  "id": "stage-6",
+  "title": "Vocabulary Pronunciation Practice",
+  "stage": "Stage 6",
+  "entrySceneId": "pronunciation-1",
+  "totalScenes": 20,
+  "backgroundImage": "/phu-thap-boek-view.jpg",
+  "character": {
+    "avatar": "A",
+    "avatarImage": "/alex-avatar.jpg",
+    "name": "Alex",
+    "role": "Pronunciation Coach"
+  },
+  "scenes": [
+    {
+      "sceneId": "pronunciation-1",
+      "id": 1,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Word",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "temple",
+        "meaningTh": "วัด",
+        "exampleSentence": "The temple is on your left.",
+        "acceptedAnswers": ["temple"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-2",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-2",
+      "id": 2,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Word",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "market",
+        "meaningTh": "ตลาด",
+        "exampleSentence": "The market is behind the bus station.",
+        "acceptedAnswers": ["market"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-3",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-3",
+      "id": 3,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Word",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "museum",
+        "meaningTh": "พิพิธภัณฑ์",
+        "exampleSentence": "The museum is across from the information center.",
+        "acceptedAnswers": ["museum"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-4",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-4",
+      "id": 4,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Phrase",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "go straight",
+        "meaningTh": "ตรงไป",
+        "exampleSentence": "Go straight for two blocks.",
+        "acceptedAnswers": ["go straight"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-5",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-5",
+      "id": 5,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Phrase",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "turn left",
+        "meaningTh": "เลี้ยวซ้าย",
+        "exampleSentence": "Turn left at the traffic light.",
+        "acceptedAnswers": ["turn left"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-6",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-6",
+      "id": 6,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Phrase",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "turn right",
+        "meaningTh": "เลี้ยวขวา",
+        "exampleSentence": "Turn right after the bridge.",
+        "acceptedAnswers": ["turn right"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-7",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-7",
+      "id": 7,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Phrase",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "ticket counter",
+        "meaningTh": "เคาน์เตอร์ขายตั๋ว",
+        "exampleSentence": "The ticket counter is near the entrance.",
+        "acceptedAnswers": ["ticket counter"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-8",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-8",
+      "id": 8,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Phrase",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "entrance gate",
+        "meaningTh": "ประตูทางเข้า",
+        "exampleSentence": "The entrance gate is beside the garden.",
+        "acceptedAnswers": ["entrance gate"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-9",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-9",
+      "id": 9,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Word",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "viewpoint",
+        "meaningTh": "จุดชมวิว",
+        "exampleSentence": "The viewpoint is at the top of the hill.",
+        "acceptedAnswers": ["viewpoint", "view point"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-10",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-10",
+      "id": 10,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Phrase",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "souvenir shop",
+        "meaningTh": "ร้านขายของที่ระลึก",
+        "exampleSentence": "The souvenir shop is on your left.",
+        "acceptedAnswers": ["souvenir shop"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-11",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-11",
+      "id": 11,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Phrase",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "information center",
+        "meaningTh": "ศูนย์ข้อมูลนักท่องเที่ยว",
+        "exampleSentence": "The information center is opposite the museum.",
+        "acceptedAnswers": ["information center", "information centre"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-12",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-12",
+      "id": 12,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Phrase",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "bus station",
+        "meaningTh": "สถานีขนส่ง",
+        "exampleSentence": "The bus station is next to the police box.",
+        "acceptedAnswers": ["bus station"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-13",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-13",
+      "id": 13,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Phrase",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "traffic light",
+        "meaningTh": "สัญญาณไฟจราจร",
+        "exampleSentence": "Turn left at the traffic light.",
+        "acceptedAnswers": ["traffic light"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-14",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-14",
+      "id": 14,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Phrase",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "parking area",
+        "meaningTh": "ลานจอดรถ",
+        "exampleSentence": "The parking area is behind the visitor center.",
+        "acceptedAnswers": ["parking area"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-15",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-15",
+      "id": 15,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Phrase",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "local food",
+        "meaningTh": "อาหารท้องถิ่น",
+        "exampleSentence": "Local food is available near the market.",
+        "acceptedAnswers": ["local food"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-16",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-16",
+      "id": 16,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Phrase",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "shuttle bus",
+        "meaningTh": "รถรับส่ง",
+        "exampleSentence": "The shuttle bus stops near the entrance.",
+        "acceptedAnswers": ["shuttle bus"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-17",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-17",
+      "id": 17,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Phrase",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "cross the road",
+        "meaningTh": "ข้ามถนน",
+        "exampleSentence": "Cross the road at the crosswalk.",
+        "acceptedAnswers": ["cross the road"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-18",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-18",
+      "id": 18,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Phrase",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "follow the signs",
+        "meaningTh": "เดินตามป้าย",
+        "exampleSentence": "Follow the signs to the temple entrance.",
+        "acceptedAnswers": ["follow the signs"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-19",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-19",
+      "id": 19,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Phrase",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "on your left",
+        "meaningTh": "อยู่ทางซ้ายมือของคุณ",
+        "exampleSentence": "The souvenir shop is on your left.",
+        "acceptedAnswers": ["on your left"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": "pronunciation-20",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "pronunciation-20",
+      "id": 20,
+      "type": "pronunciation",
+      "difficulty": "A2",
+      "location": "Phetchabun",
+      "context": "Learners practice tourism vocabulary pronunciation.",
+      "story": {
+        "title": "Say the Phrase",
+        "text": "Listen to the model and repeat."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "friendly",
+        "text": "Listen and repeat."
+      },
+      "question": "Say the word or phrase.",
+      "pronunciation": {
+        "targetWord": "on your right",
+        "meaningTh": "อยู่ทางขวามือของคุณ",
+        "exampleSentence": "The information center is on your right.",
+        "acceptedAnswers": ["on your right"],
+        "maxAttempts": 3
+      },
+      "choices": [
+        {
+          "text": "Pronunciation checked by microphone",
+          "correct": true,
+          "xp": 10,
+          "nextSceneId": null,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Good pronunciation."
+          }
+        }
+      ]
+    }
+  ]
+}

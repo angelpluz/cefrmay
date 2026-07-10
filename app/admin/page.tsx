@@ -124,6 +124,18 @@ function DashboardError(props: { message: string }) {
   );
 }
 
+function getActivityLabel(record: StageAnswerRecordInput) {
+  if (record.activityType === "audio-listening") {
+    return "Audio Listening";
+  }
+
+  if (record.activityType === "pronunciation") {
+    return "Pronunciation";
+  }
+
+  return "Multiple Choice";
+}
+
 function AnswerRecordsDetails(props: {
   answerRecords: StageAnswerRecordInput[];
 }) {
@@ -153,8 +165,16 @@ function AnswerRecordsDetails(props: {
                   +{record.xpAwarded} XP
                 </span>
                 <span className="text-slate-500">{record.sceneId}</span>
+                <span className="rounded-full bg-cyan-300/10 px-2 py-0.5 font-bold text-cyan-200">
+                  {getActivityLabel(record)}
+                </span>
               </div>
               <p className="mt-2 text-slate-200">{record.question}</p>
+              {record.hiddenPrompt ? (
+                <p className="mt-2 rounded-[12px] bg-cyan-300/10 p-2 text-cyan-100">
+                  Hidden prompt: {record.audioText ?? "Audio prompt was hidden."}
+                </p>
+              ) : null}
               <p className="mt-2">
                 Selected:{" "}
                 <span className="text-white">{record.selectedAnswer}</span>
@@ -164,6 +184,30 @@ function AnswerRecordsDetails(props: {
                   Correct:{" "}
                   <span className="text-white">{record.correctAnswer}</span>
                 </p>
+              ) : null}
+              {record.activityType === "pronunciation" ? (
+                <div className="mt-2 rounded-[12px] bg-emerald-300/10 p-2 text-emerald-50">
+                  <p>
+                    Target:{" "}
+                    <span className="text-white">{record.targetWord ?? "-"}</span>
+                  </p>
+                  <p>
+                    Meaning:{" "}
+                    <span className="text-white">{record.meaningTh ?? "-"}</span>
+                  </p>
+                  <p>
+                    Recognized:{" "}
+                    <span className="text-white">
+                      {record.recognizedText ?? "-"}
+                    </span>
+                  </p>
+                  <p>
+                    Attempts:{" "}
+                    <span className="text-white">
+                      {record.attemptCount ?? "-"}
+                    </span>
+                  </p>
+                </div>
               ) : null}
             </div>
           ))
@@ -214,7 +258,8 @@ export default async function AdminPage(props: {
   const selectedPlayerUid = getQueryValue(searchParams.player) || "all";
   const selectedStage = getQueryValue(searchParams.stage) || "all";
   const selectedScore = getQueryValue(searchParams.score) || "all";
-  const query = getQueryValue(searchParams.q).trim().toLowerCase();
+  const rawQuery = getQueryValue(searchParams.q).trim();
+  const query = rawQuery.toLowerCase();
   const selectedPlayer =
     selectedPlayerUid === "all"
       ? null
@@ -243,6 +288,29 @@ export default async function AdminPage(props: {
     }
 
     return `/admin?${params.toString()}`;
+  };
+  const buildExportHref = () => {
+    const params = new URLSearchParams();
+
+    if (selectedPlayerUid !== "all") {
+      params.set("player", selectedPlayerUid);
+    }
+
+    if (selectedStage !== "all") {
+      params.set("stage", selectedStage);
+    }
+
+    if (selectedScore !== "all") {
+      params.set("score", selectedScore);
+    }
+
+    if (rawQuery) {
+      params.set("q", rawQuery);
+    }
+
+    const queryString = params.toString();
+
+    return queryString ? `/admin/results.csv?${queryString}` : "/admin/results.csv";
   };
 
   const resultsByPlayerUid = new Map<string, typeof dashboard.allResults>();
@@ -412,14 +480,22 @@ export default async function AdminPage(props: {
               </p>
             </div>
 
-            <form action={logoutAdminAction}>
-              <button
-                type="submit"
-                className="rounded-full border border-white/12 bg-white/8 px-4 py-3 text-xs font-semibold uppercase tracking-[0.26em] text-slate-100 transition hover:-translate-y-0.5"
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={buildExportHref()}
+                className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.26em] text-emerald-100 transition hover:-translate-y-0.5"
               >
-                Sign Out
-              </button>
-            </form>
+                Export CSV
+              </a>
+              <form action={logoutAdminAction}>
+                <button
+                  type="submit"
+                  className="rounded-full border border-white/12 bg-white/8 px-4 py-3 text-xs font-semibold uppercase tracking-[0.26em] text-slate-100 transition hover:-translate-y-0.5"
+                >
+                  Sign Out
+                </button>
+              </form>
+            </div>
           </div>
 
           <form className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-[1.1fr_1fr_0.8fr_0.8fr_auto]">

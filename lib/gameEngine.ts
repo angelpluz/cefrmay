@@ -14,13 +14,24 @@ export type GameSceneData = {
   choices: GameChoice[];
   context: string;
   dialogue: {
+    audioSrc?: string;
+    hideText?: boolean;
     mood: string;
     speaker: string;
     text: string;
   };
   difficulty?: string;
+  hideQuestionText?: boolean;
   id: number;
   location: string;
+  pronunciation?: {
+    acceptedAnswers: string[];
+    audioSrc?: string;
+    exampleSentence?: string;
+    maxAttempts?: number;
+    meaningTh: string;
+    targetWord: string;
+  };
   question: string;
   sceneImage?: string;
   sceneId: string;

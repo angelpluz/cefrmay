@@ -7,6 +7,7 @@ import CharacterBox from "@/components/CharacterBox";
 import ChoiceBox from "@/components/ChoiceBox";
 import FeedbackOverlay from "@/components/FeedbackOverlay";
 import GameHUD from "@/components/GameHUD";
+import PronunciationPracticeScene from "@/components/PronunciationPracticeScene";
 import { getStageMaxXp, shuffleChoices, type GameData } from "@/lib/gameEngine";
 import type { StageAnswerRecordInput } from "@/lib/research-contract";
 import { useGameSession } from "@/lib/useGameSession";
@@ -28,6 +29,28 @@ type GameSceneProps = {
   stageData: GameData;
 };
 
+function speakText(text: string, onStatusChange: (message: string) => void) {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  if (!("speechSynthesis" in window)) {
+    onStatusChange("Speech playback is not available on this browser.");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-US";
+  utterance.rate = 0.85;
+  utterance.onstart = () => onStatusChange("Playing Alex's audio...");
+  utterance.onend = () => onStatusChange("Listen again if needed.");
+  utterance.onerror = () => onStatusChange("Unable to play the audio prompt.");
+
+  window.speechSynthesis.speak(utterance);
+}
+
 export default function GameScene({
   initialSceneId,
   initialXp = 0,
@@ -40,6 +63,10 @@ export default function GameScene({
   const stageRunKey = `${sessionSeed}:${stageData.id}`;
   const completionSubmittedRef = useRef<string | null>(null);
   const [stageStartXp] = useState(initialXp);
+  const [audioStatus, setAudioStatus] = useState<{
+    message: string;
+    sceneId: string;
+  } | null>(null);
 
   const {
     answerRecords,
@@ -47,6 +74,7 @@ export default function GameScene({
     currentSceneId,
     feedback,
     handleChoiceSelect,
+    handlePronunciationComplete,
     isComplete,
     progress,
     xp,
@@ -67,6 +95,14 @@ export default function GameScene({
       `${sessionSeed}:${stageData.id}:${currentScene.sceneId}`,
     );
   }, [currentScene, sessionSeed, stageData.id]);
+
+  useEffect(() => {
+    return () => {
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, [currentScene?.sceneId]);
 
   useEffect(() => {
     onProgressChange({
@@ -114,6 +150,9 @@ export default function GameScene({
   if (!currentScene) {
     return null;
   }
+
+  const currentAudioStatus =
+    audioStatus?.sceneId === currentScene.sceneId ? audioStatus.message : "";
 
   return (
     <section className="relative flex h-full flex-col overflow-hidden bg-slate-950 text-white">
@@ -196,39 +235,86 @@ export default function GameScene({
               </p>
             </section>
 
-            <CharacterBox
-              key={currentScene.sceneId}
-              avatar={stageData.character.avatar}
-              avatarImage={stageData.character.avatarImage}
-              dialogue={currentScene.dialogue.text}
-              mood={currentScene.dialogue.mood}
-              name={stageData.character.name}
-              role={stageData.character.role}
-              speaker={currentScene.character ?? currentScene.dialogue.speaker}
-            />
-
-            <section className="rounded-[30px] bg-white/94 p-5 text-slate-900 shadow-[0_20px_45px_rgba(15,23,42,0.14)] backdrop-blur-xl">
-              <div className="mb-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-orange-500">
-                  Choice
+            {currentScene.dialogue.hideText ? (
+              <section className="rounded-[30px] border border-cyan-200/20 bg-slate-950/84 p-5 text-white shadow-[0_24px_45px_rgba(15,23,42,0.28)] backdrop-blur-md">
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200">
+                  Audio Prompt
                 </p>
-                <h2 className="mt-2 text-xl font-bold text-slate-900">
-                  {currentScene.question}
+                <h2 className="mt-2 text-xl font-black">
+                  Listen to Alex before choosing.
                 </h2>
-              </div>
+                <p className="mt-3 text-sm leading-6 text-slate-300">
+                  The spoken prompt is hidden for this listening item.
+                </p>
+                <button
+                  type="button"
+                  onClick={() =>
+                    speakText(currentScene.dialogue.text, (message) =>
+                      setAudioStatus({
+                        message,
+                        sceneId: currentScene.sceneId,
+                      }),
+                    )
+                  }
+                  className="mt-4 w-full rounded-[22px] bg-gradient-to-r from-cyan-300 via-sky-400 to-emerald-300 px-5 py-4 text-base font-black text-slate-950 shadow-[0_20px_50px_rgba(34,211,238,0.28)] transition hover:-translate-y-0.5 active:scale-[0.985]"
+                >
+                  Listen to Alex
+                </button>
+                {currentAudioStatus ? (
+                  <p className="mt-3 text-sm font-semibold text-cyan-100">
+                    {currentAudioStatus}
+                  </p>
+                ) : null}
+              </section>
+            ) : (
+              <CharacterBox
+                key={currentScene.sceneId}
+                avatar={stageData.character.avatar}
+                avatarImage={stageData.character.avatarImage}
+                dialogue={currentScene.dialogue.text}
+                mood={currentScene.dialogue.mood}
+                name={stageData.character.name}
+                role={stageData.character.role}
+                speaker={currentScene.character ?? currentScene.dialogue.speaker}
+              />
+            )}
 
-              <div className="space-y-3">
-                {randomizedChoices.map((choice, index) => (
-                  <ChoiceBox
-                    key={`${currentScene.sceneId}-${choice.text}`}
-                    disabled={feedback !== null}
-                    index={index + 1}
-                    text={choice.text}
-                    onClick={() => handleChoiceSelect(choice)}
-                  />
-                ))}
-              </div>
-            </section>
+            {currentScene.type === "pronunciation" &&
+            currentScene.pronunciation ? (
+              <PronunciationPracticeScene
+                acceptedAnswers={currentScene.pronunciation.acceptedAnswers}
+                exampleSentence={currentScene.pronunciation.exampleSentence}
+                maxAttempts={currentScene.pronunciation.maxAttempts}
+                meaningTh={currentScene.pronunciation.meaningTh}
+                onComplete={handlePronunciationComplete}
+                targetWord={currentScene.pronunciation.targetWord}
+              />
+            ) : (
+              <section className="rounded-[30px] bg-white/94 p-5 text-slate-900 shadow-[0_20px_45px_rgba(15,23,42,0.14)] backdrop-blur-xl">
+                <div className="mb-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-orange-500">
+                    Choice
+                  </p>
+                  <h2 className="mt-2 text-xl font-bold text-slate-900">
+                    {currentScene.hideQuestionText
+                      ? "Listen and choose the best response."
+                      : currentScene.question}
+                  </h2>
+                </div>
+
+                <div className="space-y-3">
+                  {randomizedChoices.map((choice, index) => (
+                    <ChoiceBox
+                      key={`${currentScene.sceneId}-${choice.text}`}
+                      disabled={feedback !== null}
+                      index={index + 1}
+                      text={choice.text}
+                      onClick={() => handleChoiceSelect(choice)}
+                    />
+                  ))}
+                </div>
+              </section>
+            )}
           </div>
         </div>
       </div>

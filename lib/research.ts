@@ -27,14 +27,31 @@ function isStageAnswerRecord(value: unknown): value is StageAnswerRecordInput {
   }
 
   const record = value as Partial<StageAnswerRecordInput>;
+  const validActivityType =
+    record.activityType === undefined ||
+    record.activityType === "multiple-choice" ||
+    record.activityType === "audio-listening" ||
+    record.activityType === "pronunciation";
 
   return (
+    validActivityType &&
     typeof record.answeredAt === "string" &&
+    (record.attemptCount === undefined ||
+      typeof record.attemptCount === "number") &&
+    (record.audioText === undefined || typeof record.audioText === "string") &&
     typeof record.correctAnswer === "string" &&
+    (record.hiddenPrompt === undefined ||
+      typeof record.hiddenPrompt === "boolean") &&
     typeof record.isCorrect === "boolean" &&
+    (record.isPronunciationCorrect === undefined ||
+      typeof record.isPronunciationCorrect === "boolean") &&
+    (record.meaningTh === undefined || typeof record.meaningTh === "string") &&
     typeof record.question === "string" &&
+    (record.recognizedText === undefined ||
+      typeof record.recognizedText === "string") &&
     typeof record.sceneId === "string" &&
     typeof record.selectedAnswer === "string" &&
+    (record.targetWord === undefined || typeof record.targetWord === "string") &&
     typeof record.xpAwarded === "number"
   );
 }

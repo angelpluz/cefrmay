@@ -1,0 +1,1256 @@
+{
+  "id": "stage-5",
+  "title": "Alex Direction Challenge",
+  "stage": "Stage 5",
+  "entrySceneId": "alex-direction-1",
+  "totalScenes": 20,
+  "backgroundImage": "/temple-arrival.jpg",
+  "character": {
+    "avatar": "A",
+    "avatarImage": "/alex-avatar.jpg",
+    "name": "Alex",
+    "role": "Tourist"
+  },
+  "scenes": [
+    {
+      "sceneId": "alex-direction-1",
+      "id": 1,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Phetchabun Town",
+      "context": "Alex asks for directions to the temple.",
+      "story": {
+        "title": "Alex Needs Directions",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "confused",
+        "text": "Excuse me, how can I get to the temple?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "I like eating cabbage.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-2",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not answer a direction question."
+          }
+        },
+        {
+          "text": "Go straight and turn left at the traffic light.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-2",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This is a clear direction response."
+          }
+        },
+        {
+          "text": "It is very expensive.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-2",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not give directions."
+          }
+        },
+        {
+          "text": "You are welcome.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-2",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is polite, but it does not answer Alex."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-2",
+      "id": 2,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Market Street",
+      "context": "Alex asks where the local market is.",
+      "story": {
+        "title": "Finding the Market",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "curious",
+        "text": "Excuse me, where is the local market?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "The market opens at six in the morning.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-3",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This gives a time, not directions."
+          }
+        },
+        {
+          "text": "I bought mangoes yesterday.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-3",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is about shopping, not directions."
+          }
+        },
+        {
+          "text": "The weather is cool today.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-3",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not answer Alex's question."
+          }
+        },
+        {
+          "text": "Walk past the bank. The market is on your right.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-3",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This gives a clear route."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-3",
+      "id": 3,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Museum Road",
+      "context": "Alex asks for the museum.",
+      "story": {
+        "title": "Museum Road",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "focused",
+        "text": "How do I get to the museum from here?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "Cross the road and go straight for two blocks.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-4",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This is useful direction language."
+          }
+        },
+        {
+          "text": "The museum has many old objects.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-4",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This describes the museum but does not give directions."
+          }
+        },
+        {
+          "text": "I am from Bangkok.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-4",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is not a direction response."
+          }
+        },
+        {
+          "text": "Please speak slowly.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-4",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not explain where to go."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-4",
+      "id": 4,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Temple Gate",
+      "context": "Alex asks about the entrance gate.",
+      "story": {
+        "title": "At the Temple Gate",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "confused",
+        "text": "Is the entrance gate near the temple?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "Yes, the entrance gate is beside the temple garden.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-5",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This answers with location details."
+          }
+        },
+        {
+          "text": "I need two tickets, please.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-5",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is for buying tickets, not giving directions."
+          }
+        },
+        {
+          "text": "The temple is beautiful at sunrise.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-5",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is a comment, not a location answer."
+          }
+        },
+        {
+          "text": "I do not like spicy food.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-5",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is unrelated."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-5",
+      "id": 5,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Viewpoint Path",
+      "context": "Alex asks for the viewpoint.",
+      "story": {
+        "title": "Viewpoint Path",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "excited",
+        "text": "Which way should I go to reach the viewpoint?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "The viewpoint is very popular.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-6",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not tell Alex which way to go."
+          }
+        },
+        {
+          "text": "Turn right at the sign and follow the path uphill.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-6",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This gives useful step-by-step directions."
+          }
+        },
+        {
+          "text": "Please take a photo of me.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-6",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is a request, not a direction."
+          }
+        },
+        {
+          "text": "The ticket is twenty baht.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-6",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This gives a price, not a route."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-6",
+      "id": 6,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Bus Station",
+      "context": "Alex asks about the bus station.",
+      "story": {
+        "title": "Bus Station Stop",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "worried",
+        "text": "Can you tell me how to get to the bus station?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "The bus station is crowded on holidays.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-7",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is a fact, but it is not directions."
+          }
+        },
+        {
+          "text": "No, I do not have a bus ticket.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-7",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not help Alex find the station."
+          }
+        },
+        {
+          "text": "Go straight for five minutes. It is next to the police box.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-7",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This gives distance and a landmark."
+          }
+        },
+        {
+          "text": "The bus is blue and white.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-7",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This describes the bus, not the way there."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-7",
+      "id": 7,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Information Center",
+      "context": "Alex asks for the information center.",
+      "story": {
+        "title": "Information Center",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "polite",
+        "text": "Where can I find the information center?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "It is opposite the museum, next to the souvenir shop.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-8",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This uses clear location language."
+          }
+        },
+        {
+          "text": "I need information about food.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-8",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not answer where the center is."
+          }
+        },
+        {
+          "text": "The center has many brochures.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-8",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This describes the center but gives no direction."
+          }
+        },
+        {
+          "text": "You should drink more water.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-8",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is unrelated."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-8",
+      "id": 8,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Souvenir Lane",
+      "context": "Alex asks for the souvenir shop.",
+      "story": {
+        "title": "Souvenir Lane",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "curious",
+        "text": "Is there a souvenir shop near here?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "Souvenirs are nice gifts.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-9",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is a general comment, not a direction."
+          }
+        },
+        {
+          "text": "It closes at nine o'clock.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-9",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This gives a time, not a location."
+          }
+        },
+        {
+          "text": "Yes. Walk to the corner and it is on your left.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-9",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This answers yes and gives directions."
+          }
+        },
+        {
+          "text": "I bought a T-shirt there.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-9",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not guide Alex."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-9",
+      "id": 9,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Parking Area",
+      "context": "Alex asks for the parking area.",
+      "story": {
+        "title": "Parking Area",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "focused",
+        "text": "How can I get to the parking area?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "The parking area is large.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-10",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This describes the place but does not give directions."
+          }
+        },
+        {
+          "text": "Follow the blue signs behind the visitor center.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-10",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. Signs and landmarks help the listener."
+          }
+        },
+        {
+          "text": "I do not drive a car.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-10",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not answer Alex's request."
+          }
+        },
+        {
+          "text": "Parking is free today.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-10",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This gives useful information, but not directions."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-10",
+      "id": 10,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Crosswalk",
+      "context": "Alex asks if he should cross the road.",
+      "story": {
+        "title": "Safe Crossing",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "careful",
+        "text": "Should I cross the road to get to the temple?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "Yes, use the crosswalk and the temple is on your right.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-11",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This gives safe and clear directions."
+          }
+        },
+        {
+          "text": "The road is made of concrete.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-11",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not answer whether Alex should cross."
+          }
+        },
+        {
+          "text": "I crossed the road yesterday.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-11",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is not useful for Alex now."
+          }
+        },
+        {
+          "text": "The temple has many visitors.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-11",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not explain the route."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-11",
+      "id": 11,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Traffic Light",
+      "context": "Alex asks where to turn.",
+      "story": {
+        "title": "At the Traffic Light",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "uncertain",
+        "text": "Do I turn left or right at the traffic light?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "Traffic lights are red, yellow, and green.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-12",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This explains lights, not directions."
+          }
+        },
+        {
+          "text": "The road is busy at noon.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-12",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not tell Alex where to turn."
+          }
+        },
+        {
+          "text": "Turn left at the traffic light, then walk one minute.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-12",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This directly answers left or right."
+          }
+        },
+        {
+          "text": "I prefer walking in the morning.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-12",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is unrelated."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-12",
+      "id": 12,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Shuttle Stop",
+      "context": "Alex asks for the shuttle bus stop.",
+      "story": {
+        "title": "Shuttle Stop",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "polite",
+        "text": "Where is the shuttle bus stop?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "Take the shuttle bus at the small shelter near the entrance.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-13",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This gives the stop location."
+          }
+        },
+        {
+          "text": "The shuttle bus is comfortable.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-13",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is not a location."
+          }
+        },
+        {
+          "text": "The bus driver is friendly.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-13",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not tell Alex where to wait."
+          }
+        },
+        {
+          "text": "I like riding buses.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-13",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is unrelated."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-13",
+      "id": 13,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Food Street",
+      "context": "Alex asks for local food stalls.",
+      "story": {
+        "title": "Food Street",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "hungry",
+        "text": "How do I get to the local food stalls?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "Local food is delicious.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-14",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not give directions."
+          }
+        },
+        {
+          "text": "Walk toward the music. The food stalls are behind the market.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-14",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This gives a clear landmark and route."
+          }
+        },
+        {
+          "text": "I already ate dinner.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-14",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not help Alex find the stalls."
+          }
+        },
+        {
+          "text": "Please make it less spicy.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-14",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is for ordering food, not directions."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-14",
+      "id": 14,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Main Road",
+      "context": "Alex asks for the temple from the market.",
+      "story": {
+        "title": "Back to the Temple",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "curious",
+        "text": "Can I walk from the market to the temple?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "Yes, walk straight for ten minutes and cross at the light.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-15",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This answers yes and gives the route."
+          }
+        },
+        {
+          "text": "The market sells vegetables.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-15",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This describes the market, not the route."
+          }
+        },
+        {
+          "text": "The temple is quiet in the afternoon.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-15",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not answer if Alex can walk there."
+          }
+        },
+        {
+          "text": "I will buy fruit later.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-15",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is unrelated."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-15",
+      "id": 15,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Ticket Counter",
+      "context": "Alex asks where to buy a ticket.",
+      "story": {
+        "title": "Ticket Counter",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "polite",
+        "text": "Where is the ticket counter?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "The ticket is thirty baht.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-16",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This gives a price, not a location."
+          }
+        },
+        {
+          "text": "The ticket counter is next to the entrance gate.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-16",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This gives the counter location."
+          }
+        },
+        {
+          "text": "I lost my ticket.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-16",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not answer Alex."
+          }
+        },
+        {
+          "text": "Tickets are small pieces of paper.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-16",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This explains a ticket, not directions."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-16",
+      "id": 16,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Garden Path",
+      "context": "Alex asks how far the temple is.",
+      "story": {
+        "title": "Garden Path",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "careful",
+        "text": "How far is the temple from here?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "The temple is open every day.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-17",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This gives opening information, not distance."
+          }
+        },
+        {
+          "text": "It is very peaceful there.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-17",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is a description, not distance."
+          }
+        },
+        {
+          "text": "It is about five minutes on foot.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-17",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This answers the distance question."
+          }
+        },
+        {
+          "text": "I am waiting for my friend.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-17",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is unrelated."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-17",
+      "id": 17,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Signpost",
+      "context": "Alex asks which signs to follow.",
+      "story": {
+        "title": "Follow the Signs",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "unsure",
+        "text": "Which signs should I follow to reach the temple?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "Follow the brown signs that say temple entrance.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-18",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This tells Alex exactly which signs to follow."
+          }
+        },
+        {
+          "text": "Signs are useful for tourists.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-18",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is true, but it is not a direction."
+          }
+        },
+        {
+          "text": "The sign is made of wood.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-18",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This describes the sign, not the route."
+          }
+        },
+        {
+          "text": "I cannot read small letters.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-18",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not help Alex choose the signs."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-18",
+      "id": 18,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Side Street",
+      "context": "Alex asks where to turn after the bridge.",
+      "story": {
+        "title": "After the Bridge",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "focused",
+        "text": "After I cross the small bridge, where should I turn?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "The bridge is old but safe.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-19",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This describes the bridge but does not say where to turn."
+          }
+        },
+        {
+          "text": "Turn right after the bridge and walk to the temple wall.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-19",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This clearly tells Alex where to turn."
+          }
+        },
+        {
+          "text": "I like walking on bridges.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-19",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is unrelated."
+          }
+        },
+        {
+          "text": "The river is under the bridge.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-19",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not give route information."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-19",
+      "id": 19,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Temple Wall",
+      "context": "Alex asks whether he has arrived.",
+      "story": {
+        "title": "Near the Temple",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "hopeful",
+        "text": "Am I near the temple now?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "Yes, the temple entrance is just ahead on your left.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": "alex-direction-20",
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This confirms the location and direction."
+          }
+        },
+        {
+          "text": "The temple is a good place to relax.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-20",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not answer if Alex is near it."
+          }
+        },
+        {
+          "text": "I am not a tourist guide.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-20",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not help Alex."
+          }
+        },
+        {
+          "text": "The wall is white.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": "alex-direction-20",
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This describes the wall, not the route."
+          }
+        }
+      ]
+    },
+    {
+      "sceneId": "alex-direction-20",
+      "id": 20,
+      "type": "audio-listening",
+      "difficulty": "A2",
+      "location": "Temple Entrance",
+      "context": "Alex asks for the final entrance.",
+      "story": {
+        "title": "Final Entrance",
+        "text": "Listen to Alex and choose the best response."
+      },
+      "dialogue": {
+        "speaker": "Alex",
+        "mood": "grateful",
+        "text": "Which entrance should I use for the temple?",
+        "hideText": true
+      },
+      "question": "Listen and choose the best answer.",
+      "hideQuestionText": true,
+      "choices": [
+        {
+          "text": "Use the main entrance beside the ticket counter.",
+          "correct": true,
+          "xp": 20,
+          "nextSceneId": null,
+          "feedback": {
+            "status": "correct",
+            "reaction": "Correct. This is the best final direction."
+          }
+        },
+        {
+          "text": "The entrance is a good place to take photos.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": null,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This is a comment, not the best direction."
+          }
+        },
+        {
+          "text": "I will visit tomorrow.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": null,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not answer Alex's question."
+          }
+        },
+        {
+          "text": "The ticket counter is busy.",
+          "correct": false,
+          "xp": 0,
+          "nextSceneId": null,
+          "feedback": {
+            "status": "wrong",
+            "reaction": "This does not tell Alex which entrance to use."
+          }
+        }
+      ]
+    }
+  ]
+}

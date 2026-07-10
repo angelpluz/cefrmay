@@ -11,6 +11,7 @@ import {
   nextScene,
   type GameChoice,
   type GameData,
+  type GameSceneData,
 } from "@/lib/gameEngine";
 import type { StageAnswerRecordInput } from "@/lib/research-contract";
 
@@ -20,8 +21,29 @@ type FeedbackState = {
   xpAwarded: number;
 };
 
+type PronunciationResult = {
+  attemptCount: number;
+  isCorrect: boolean;
+  recognizedText: string;
+  xpAwarded: number;
+};
+
 const FEEDBACK_DELAY_MS = 1200;
 const XP_BURST_DELAY_MS = 900;
+
+function getAnswerActivityType(
+  scene: GameSceneData,
+): StageAnswerRecordInput["activityType"] {
+  if (scene.type === "audio-listening") {
+    return "audio-listening";
+  }
+
+  if (scene.type === "pronunciation") {
+    return "pronunciation";
+  }
+
+  return "multiple-choice";
+}
 
 export function useGameSession({
   initialSceneId,
@@ -222,8 +244,13 @@ export function useGameSession({
     setAnswerRecords((currentRecords) => [
       ...currentRecords,
       {
+        activityType: getAnswerActivityType(currentScene),
         answeredAt: new Date().toISOString(),
         correctAnswer: correctChoice?.text ?? "",
+        hiddenPrompt: currentScene.dialogue.hideText || undefined,
+        audioText: currentScene.dialogue.hideText
+          ? currentScene.dialogue.text
+          : undefined,
         isCorrect: result.isCorrect,
         question: currentScene.question,
         sceneId: currentScene.sceneId,
@@ -241,6 +268,73 @@ export function useGameSession({
     nextSceneTimerRef.current = setTimeout(() => {
       setFeedback(null);
       setCurrentSceneId(nextScene(stageData, currentScene.sceneId, choice));
+    }, FEEDBACK_DELAY_MS);
+  };
+
+  const handlePronunciationComplete = (result: PronunciationResult) => {
+    if (!currentScene || feedback || currentScene.type !== "pronunciation") {
+      return;
+    }
+
+    const pronunciation = currentScene.pronunciation;
+    const completionChoice = currentScene.choices.find((choice) => choice.correct);
+    const xpAwarded = result.isCorrect
+      ? completionChoice?.xp ?? result.xpAwarded
+      : 0;
+
+    if (xpAwarded > 0) {
+      setXp((currentXp) => currentXp + xpAwarded);
+      setXpBurst(xpAwarded);
+
+      if (xpTimerRef.current) {
+        clearTimeout(xpTimerRef.current);
+      }
+
+      xpTimerRef.current = setTimeout(() => {
+        setXpBurst(null);
+      }, XP_BURST_DELAY_MS);
+    }
+
+    setAnswerRecords((currentRecords) => [
+      ...currentRecords,
+      {
+        activityType: "pronunciation",
+        answeredAt: new Date().toISOString(),
+        attemptCount: result.attemptCount,
+        correctAnswer: pronunciation?.targetWord ?? "",
+        isCorrect: result.isCorrect,
+        isPronunciationCorrect: result.isCorrect,
+        meaningTh: pronunciation?.meaningTh,
+        question: currentScene.question,
+        recognizedText: result.recognizedText,
+        sceneId: currentScene.sceneId,
+        selectedAnswer: result.recognizedText || "No speech recognized",
+        targetWord: pronunciation?.targetWord,
+        xpAwarded,
+      },
+    ]);
+
+    setFeedback({
+      message: result.isCorrect
+        ? completionChoice?.feedback.reaction ?? "Good pronunciation."
+        : `Recorded pronunciation attempt: ${
+            result.recognizedText || "No speech recognized"
+          }`,
+      status: result.isCorrect ? "correct" : "wrong",
+      xpAwarded,
+    });
+
+    if (nextSceneTimerRef.current) {
+      clearTimeout(nextSceneTimerRef.current);
+    }
+
+    nextSceneTimerRef.current = setTimeout(() => {
+      setFeedback(null);
+      setCurrentSceneId(
+        completionChoice
+          ? nextScene(stageData, currentScene.sceneId, completionChoice)
+          : null,
+      );
     }, FEEDBACK_DELAY_MS);
   };
 
@@ -267,6 +361,7 @@ export function useGameSession({
     currentSceneId,
     feedback,
     handleChoiceSelect,
+    handlePronunciationComplete,
     handleRestart,
     isComplete,
     progress,

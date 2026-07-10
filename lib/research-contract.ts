@@ -14,12 +14,20 @@ export type GameProgressInput = {
 };
 
 export type StageAnswerRecordInput = {
+  activityType?: "multiple-choice" | "audio-listening" | "pronunciation";
   answeredAt: string;
+  attemptCount?: number;
+  audioText?: string;
   correctAnswer: string;
+  hiddenPrompt?: boolean;
   isCorrect: boolean;
+  isPronunciationCorrect?: boolean;
+  meaningTh?: string;
   question: string;
+  recognizedText?: string;
   sceneId: string;
   selectedAnswer: string;
+  targetWord?: string;
   xpAwarded: number;
 };
 

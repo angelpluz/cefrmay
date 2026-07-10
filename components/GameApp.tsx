@@ -84,6 +84,36 @@ function preloadAsset(source: string) {
   });
 }
 
+function getKnownStageId(
+  stages: GameData[],
+  stageId: string,
+  fallbackStageId: string,
+) {
+  return stages.some((stage) => stage.id === stageId) ? stageId : fallbackStageId;
+}
+
+function resolveUnlockedStageIds(
+  stages: GameData[],
+  unlockedStageIds: string[],
+  completedStageIds: string[],
+) {
+  const unlockedSet = new Set(unlockedStageIds);
+
+  if (stages[0]) {
+    unlockedSet.add(stages[0].id);
+  }
+
+  for (let index = 0; index < stages.length - 1; index += 1) {
+    if (completedStageIds.includes(stages[index].id)) {
+      unlockedSet.add(stages[index + 1].id);
+    }
+  }
+
+  return stages
+    .filter((stage) => unlockedSet.has(stage.id))
+    .map((stage) => stage.id);
+}
+
 async function postJson(url: string, payload: GameProgressInput | StageResultInput) {
   const response = await fetch(url, {
     body: JSON.stringify(payload),
@@ -142,19 +172,35 @@ export default function GameApp({
 
     if (existingSave) {
       queueMicrotask(() => {
-        setActiveStageId(existingSave.currentStageId);
+        setActiveStageId(
+          getKnownStageId(stages, existingSave.currentStageId, firstStage.id),
+        );
         setCurrentSceneId(existingSave.currentSceneId);
         setXp(existingSave.xp);
-        setUnlockedStageIds(existingSave.unlockedStageIds);
+        setUnlockedStageIds(
+          resolveUnlockedStageIds(
+            stages,
+            existingSave.unlockedStageIds,
+            existingSave.completedStageIds,
+          ),
+        );
         setCompletedStageIds(existingSave.completedStageIds);
         setHasSave(true);
       });
     } else if (initialProgress) {
       queueMicrotask(() => {
-        setActiveStageId(initialProgress.currentStageId);
+        setActiveStageId(
+          getKnownStageId(stages, initialProgress.currentStageId, firstStage.id),
+        );
         setCurrentSceneId(initialProgress.currentSceneId);
         setXp(initialProgress.xp);
-        setUnlockedStageIds(initialProgress.unlockedStageIds);
+        setUnlockedStageIds(
+          resolveUnlockedStageIds(
+            stages,
+            initialProgress.unlockedStageIds,
+            initialProgress.completedStageIds,
+          ),
+        );
         setCompletedStageIds(initialProgress.completedStageIds);
         setHasSave(true);
       });
@@ -165,7 +211,7 @@ export default function GameApp({
       setIsIOS(/iPad|iPhone|iPod/.test(window.navigator.userAgent));
       setSaveLoaded(true);
     });
-  }, [initialProgress]);
+  }, [firstStage.id, initialProgress, stages]);
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (event: Event) => {
