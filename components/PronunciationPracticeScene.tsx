@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type PronunciationPracticeSceneProps = {
   acceptedAnswers: string[];
@@ -34,6 +34,7 @@ type SpeechRecognitionEvent = Event & {
 };
 
 type SpeechRecognitionInstance = EventTarget & {
+  abort: () => void;
   interimResults: boolean;
   lang: string;
   maxAlternatives: number;
@@ -41,6 +42,7 @@ type SpeechRecognitionInstance = EventTarget & {
   onerror: (() => void) | null;
   onresult: ((event: SpeechRecognitionEvent) => void) | null;
   start: () => void;
+  stop: () => void;
 };
 
 type SpeechRecognitionConstructor = new () => SpeechRecognitionInstance;
@@ -66,6 +68,22 @@ function isAcceptedPronunciation(text: string, acceptedAnswers: string[]) {
   );
 }
 
+function tryStopRecognition(recognition: SpeechRecognitionInstance | null) {
+  try {
+    recognition?.stop();
+  } catch {
+    // Some browsers throw if recognition has already ended.
+  }
+}
+
+function tryAbortRecognition(recognition: SpeechRecognitionInstance | null) {
+  try {
+    recognition?.abort();
+  } catch {
+    // Some browsers throw if recognition has already ended.
+  }
+}
+
 export default function PronunciationPracticeScene({
   acceptedAnswers,
   exampleSentence,
@@ -81,8 +99,25 @@ export default function PronunciationPracticeScene({
     useState(false);
   const [recognizedText, setRecognizedText] = useState("");
   const [status, setStatus] = useState("Click Listen, then Speak.");
+  const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
 
   const remainingAttempts = Math.max(maxAttempts - attemptCount, 0);
+
+  useEffect(() => {
+    return () => {
+      const recognition = recognitionRef.current;
+
+      if (!recognition) {
+        return;
+      }
+
+      recognition.onend = null;
+      recognition.onerror = null;
+      recognition.onresult = null;
+      tryAbortRecognition(recognition);
+      recognitionRef.current = null;
+    };
+  }, []);
 
   function speakModel() {
     if (!("speechSynthesis" in window)) {
@@ -105,6 +140,7 @@ export default function PronunciationPracticeScene({
     isCorrect: boolean;
     text: string;
   }) {
+    tryStopRecognition(recognitionRef.current);
     setCompleted(true);
     setIsListening(false);
     onComplete({
@@ -138,6 +174,7 @@ export default function PronunciationPracticeScene({
     setStatus("Listening...");
 
     const recognition = new SpeechRecognition();
+    recognitionRef.current = recognition;
     recognition.lang = "en-US";
     recognition.interimResults = false;
     recognition.maxAlternatives = 3;
@@ -191,10 +228,17 @@ export default function PronunciationPracticeScene({
     };
 
     recognition.onend = () => {
+      recognitionRef.current = null;
       setIsListening(false);
     };
 
-    recognition.start();
+    try {
+      recognition.start();
+    } catch {
+      recognitionRef.current = null;
+      setIsListening(false);
+      setStatus("Microphone is still resetting. Please tap Speak again.");
+    }
   }
 
   function continueWithoutRecognition() {

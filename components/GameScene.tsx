@@ -282,6 +282,7 @@ export default function GameScene({
             {currentScene.type === "pronunciation" &&
             currentScene.pronunciation ? (
               <PronunciationPracticeScene
+                key={currentScene.sceneId}
                 acceptedAnswers={currentScene.pronunciation.acceptedAnswers}
                 exampleSentence={currentScene.pronunciation.exampleSentence}
                 maxAttempts={currentScene.pronunciation.maxAttempts}
